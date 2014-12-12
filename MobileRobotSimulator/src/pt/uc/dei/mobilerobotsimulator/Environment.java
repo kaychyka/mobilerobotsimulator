@@ -32,7 +32,13 @@ public class Environment {
 		return location;
 	}
 	
+	/**
+	 * 
+	 * @param entity - Entity of which location we want to change/set
+	 * @param x - Coordinate x of the entity
+	 * @param y - Coordinate y of the entity
+	 */
 	public void setLocation(Entity entity, int x, int y){
-		
+		//TODO
 	}
 }

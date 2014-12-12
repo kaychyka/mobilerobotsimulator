@@ -18,41 +18,84 @@ public abstract class Agent extends Entity{
 		this.sight = sight;
 	}
 	
-	protected void search(){
-		//TODO: implement this method
+    /**
+     * Search the object we want to visit next
+     * @param obj - object we want to find/visit
+     * @return coordinates of the object
+     */
+	protected int[] search(Object obj){
+            //TODO: implement this method
+            return null;
 	}
 	
+    /**
+     * With this method we choose which object we will visit next
+     * 
+     * (It's implemented in subclasses, 
+     * where it depends on the type of the agent)
+     */
 	public abstract void choice();
 	
-	
+	/**
+     * 
+     * @return objects that agent visited or passed by
+     */
 	public ArrayList<Object> getObjectMemory() {
 		return objectMemory;
 	}
 	
+    /**
+     * 
+     * @return objects that agent can see inside the sight
+     */
 	public ArrayList<Object> getVisualMemory() {
 		return visualMemory;
 	}
 
+    /**
+     * 
+     * @return ArrayList of all coordinates that agent visited 
+     */
 	public ArrayList<int[]> getPathMemory() {
 		return pathMemory;
 	}
 
+    /**
+     * 
+     * @return radius of agent's sight
+     */
 	public int getSight() {
 		return sight;
 	}
 
+    /**
+     * 
+     * @return  list of all object inside the radius of visibility
+     */
 	public ArrayList<Object> getVisibleObjects() {
 		return visibleObjects;
 	}
 
+    /**
+     * 
+     * @return  number of all objects that agent passed by
+     */
 	public int getNumOfObjects() {
 		return numOfObjects;
 	}
 
+    /**
+     * 
+     * @return number of different objects that agent passed by
+     */
 	public int getNumOfDiffObjects() {
 		return numOfDiffObjects;
 	}
 
+    /**
+     * 
+     * @return distance that agent already made
+     */
 	public int getDistance() {
 		return distance;
 	}
