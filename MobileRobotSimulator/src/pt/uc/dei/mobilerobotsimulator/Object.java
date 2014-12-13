@@ -12,6 +12,9 @@ public class Object extends Entity{
 	public String getType() {
 		return type;
 	}
-
+	
+	public void debug(){
+		System.out.println(ID + " " + color + " " + shape + " " + coordX + " " + coordY + " " + type);
+	}
 
 }

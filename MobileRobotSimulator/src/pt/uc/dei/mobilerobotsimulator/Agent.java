@@ -99,4 +99,9 @@ public abstract class Agent extends Entity{
 	public int getDistance() {
 		return distance;
 	}
+	
+	public void debug(){
+		System.out.println(ID + " " + color + " " + shape + " " + coordX + " " + coordY + " " + sight);
+	}
+	
 }

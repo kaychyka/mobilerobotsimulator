@@ -41,4 +41,8 @@ public class Environment {
 	public void setLocation(Entity entity, int x, int y){
 		//TODO
 	}
+	
+	public void addEntity(Entity entity){
+		entitiesLocation.add(entity);
+	}
 }

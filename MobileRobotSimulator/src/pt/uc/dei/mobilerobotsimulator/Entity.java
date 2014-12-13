@@ -35,5 +35,7 @@ public abstract class Entity {
 	public int getCoordY(){
 		return coordY;
 	}
+
+	public abstract void debug();
 	
 }
