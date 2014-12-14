@@ -3,6 +3,11 @@ package pt.uc.dei.mobilerobotsimulator;
 import java.util.*;
 import java.io.*;
 
+/**
+ * 
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estevão (2011157312)
+ *
+ */
 public class Main {
 
 	public static void main(String[] args){
@@ -26,34 +31,34 @@ public class Main {
 
 		//Agent creation
 		while(skip == 0){
-		System.out.print("Agent input format: Color,Shape,X,Y,Sight");
-		Scanner objectinput = new Scanner(System.in);
-		input = objectinput.next();
-		Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
-		try {entity = new RandomAgent(id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.nextInt());
-		environment.addEntity(entity);
-		entity.debug();
-		id++;
-		} catch (NoSuchElementException e) {
-			skip = 1;
-			System.out.println("Moving to object creation...");
-		}
+			System.out.print("Agent input format: Color,Shape,X,Y,Sight");
+			Scanner objectinput = new Scanner(System.in);
+			input = objectinput.next();
+			Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
+			try {entity = new RandomAgent(id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.nextInt());
+				environment.addEntity(entity);
+				entity.debug();
+				id++;
+			} catch (NoSuchElementException e) {
+				skip = 1;
+				System.out.println("Moving to object creation...");
+			}
 		}//while
 		skip = 0;
 		//Object creation
 		while(skip == 0){
-		System.out.println("Agent input format: Color,Shape,X,Y,Type");
-		Scanner objectinput = new Scanner(System.in);
-		input = objectinput.next();
-		Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
-		try {entity = new Object(id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.next().toLowerCase());
-		environment.addEntity(entity);
-		entity.debug();
-		id++;
-		} catch (NoSuchElementException e) {
-			skip = 1;
-			System.out.println("Object creation ends");
-		}
+			System.out.println("Agent input format: Color,Shape,X,Y,Type");
+			Scanner objectinput = new Scanner(System.in);
+			input = objectinput.next();
+			Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
+			try {entity = new Object(id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.next().toLowerCase());
+				environment.addEntity(entity);
+				entity.debug();
+				id++;
+			} catch (NoSuchElementException e) {
+				skip = 1;
+				System.out.println("Object creation ends");
+			}
 		}//while
 		
 	}//main

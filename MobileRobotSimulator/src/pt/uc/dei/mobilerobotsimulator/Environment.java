@@ -5,14 +5,15 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Karin
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estevão (2011157312)
  *
- *This class represents the environment, which contains all of the entities.
+ * This class represents the environment, which is a 2D matrix and
+ * contains all of the entities.
  *
  */
 public class Environment {
 
-	private ArrayList<Entity> entitiesLocation = new ArrayList<Entity>();
+	protected static ArrayList<Entity> entitiesLocation = new ArrayList<Entity>();
 	
 	/**
 	 * 

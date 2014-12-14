@@ -2,13 +2,37 @@ package pt.uc.dei.mobilerobotsimulator;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estevão (2011157312)
+ * 
+ * Agent represents the robot. 
+ * The agents move throughout the environment exploring it in order to acquire 
+ * information about all the objects that populate it. To do that, agents have 
+ * a memory container that allows them to store all the acquired information, 
+ * i.e., a list of all the learned objects. Each agent possess also a visual field 
+ * which means that an agent precepts only the objects with coordinates belonging 
+ * to the space delimited by a circumference with radius equal to the visual 
+ * field parameter and center in the coordinates of the agent.
+ * 
+ * The agents should move from object to object. At each stop in an object, 
+ * the agent should obtain the list of objects present in its visual field. Given 
+ * this list. The agent should chose the next object to visit by making use of 
+ * one of the three strategies. That's why we have three different agents:
+ * Closest Agent, Difference Agent and Random Agent.
+ *
+ */
 public abstract class Agent extends Entity{
 
+	//all objects visited  
 	protected ArrayList<Object> objectMemory = new ArrayList<Object>(); 
+	//all objects in visual field in agent's life 
 	protected ArrayList<Object> visualMemory = new ArrayList<Object>();
+	//all objects in current visible field
+	protected ArrayList<Object> visibleObjects; // = new ArrayList<Object>();
+	//the path that agent made in its life
 	protected ArrayList<int[]> pathMemory = new ArrayList<int[]>();
 	protected int sight;
-	protected ArrayList<Object> visibleObjects = new ArrayList<Object>();
 	protected int numOfObjects;
 	protected int numOfDiffObjects;
 	protected int distance;
@@ -19,13 +43,27 @@ public abstract class Agent extends Entity{
 	}
 	
     /**
-     * Search the object we want to visit next
-     * @param obj - object we want to find/visit
-     * @return coordinates of the object
+     * Search for all the objects in the visual field.
+     * We need this method in the method choice, 
+     * which is implemented in every agent separately.
      */
-	protected int[] search(Object obj){
-            //TODO: implement this method
-            return null;
+	protected void search(){
+		visibleObjects = new ArrayList<Object>();
+		for (Entity object : Environment.entitiesLocation) {
+			//in case we have non-object entities
+			if (object instanceof Object) {
+				//the equation for looking for the points inside the radius
+				//(in our case inside the agents sight)
+				if(Math.pow((object.getCoordX() - this.coordX), 2) + 
+						Math.pow((object.getCoordY() - this.coordY),2) < Math.pow(this.sight,2))
+					visibleObjects.add((Object)object);
+			}	
+		}
+		
+		//add all visible objects to visible memory,
+		//so we have saved all objects in visible field 
+		//of the agent in its life
+		visualMemory.addAll(visibleObjects);
 	}
 	
     /**
@@ -37,23 +75,20 @@ public abstract class Agent extends Entity{
 	public abstract void choice();
 	
 	/**
-     * 
-     * @return objects that agent visited or passed by
+     * @return objects that agent visited
      */
 	public ArrayList<Object> getObjectMemory() {
 		return objectMemory;
 	}
 	
     /**
-     * 
-     * @return objects that agent can see inside the sight
+     * @return all objects in visual field in agent's life
      */
 	public ArrayList<Object> getVisualMemory() {
 		return visualMemory;
 	}
 
     /**
-     * 
      * @return ArrayList of all coordinates that agent visited 
      */
 	public ArrayList<int[]> getPathMemory() {
@@ -61,7 +96,6 @@ public abstract class Agent extends Entity{
 	}
 
     /**
-     * 
      * @return radius of agent's sight
      */
 	public int getSight() {
@@ -69,15 +103,13 @@ public abstract class Agent extends Entity{
 	}
 
     /**
-     * 
-     * @return  list of all object inside the radius of visibility
+     * @return  list of all object inside of the current radius of visibility
      */
 	public ArrayList<Object> getVisibleObjects() {
 		return visibleObjects;
 	}
 
     /**
-     * 
      * @return  number of all objects that agent passed by
      */
 	public int getNumOfObjects() {
@@ -85,7 +117,6 @@ public abstract class Agent extends Entity{
 	}
 
     /**
-     * 
      * @return number of different objects that agent passed by
      */
 	public int getNumOfDiffObjects() {
@@ -93,7 +124,6 @@ public abstract class Agent extends Entity{
 	}
 
     /**
-     * 
      * @return distance that agent already made
      */
 	public int getDistance() {
