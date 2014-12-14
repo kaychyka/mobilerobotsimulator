@@ -55,7 +55,7 @@ public abstract class Agent extends Entity{
 				//the equation for looking for the points inside the radius
 				//(in our case inside the agents sight)
 				if(Math.pow((object.getCoordX() - this.coordX), 2) + 
-						Math.pow((object.getCoordY() - this.coordY),2) < Math.pow(this.sight,2))
+						Math.pow((object.getCoordY() - this.coordY),2) <= Math.pow(this.sight,2))
 					visibleObjects.add((Object)object);
 			}	
 		}

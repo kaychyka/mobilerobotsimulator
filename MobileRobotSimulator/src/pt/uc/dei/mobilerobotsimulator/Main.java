@@ -47,7 +47,7 @@ public class Main {
 		skip = 0;
 		//Object creation
 		while(skip == 0){
-			System.out.println("Agent input format: Color,Shape,X,Y,Type");
+			System.out.println("Object input format: Color,Shape,X,Y,Type");
 			Scanner objectinput = new Scanner(System.in);
 			input = objectinput.next();
 			Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");

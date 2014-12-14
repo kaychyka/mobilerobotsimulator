@@ -21,6 +21,7 @@ public class ClosestAgent extends Agent{
 	 */
 	@Override
 	public void choice() {
+		//search for all Objects in visual field
 		search();
 		
 		//current the smallest distance between agent 
