@@ -75,6 +75,18 @@ public abstract class Agent extends Entity{
 	public abstract void choice();
 	
 	/**
+	 * Move agent to coordinates 
+	 * (e.g. where is new selected object,
+	 * which we picked in choice method or just to new location)
+	 * 
+	 * @param coordinates of next
+	 */
+	public void moveToCoordinates(int x, int y){
+		this.coordX = x;
+		this.coordY = y;
+	}
+	
+	/**
      * @return objects that agent visited
      */
 	public ArrayList<Object> getObjectMemory() {

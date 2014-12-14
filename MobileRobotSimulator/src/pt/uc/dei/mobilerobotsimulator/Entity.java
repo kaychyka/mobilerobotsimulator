@@ -5,7 +5,7 @@ package pt.uc.dei.mobilerobotsimulator;
  * @author Karin Piškur (2014190802) and Pedro de Oliveira Estevão (2011157312)
  * 
  * Entity is abstract class and super class of Agent and Object.
- * This class contains a unique identifier, a colour, a geometric shape 
+ * This class contains a unique identifier, a color, a geometric shape 
  * (for the sake of simplicity, only the well known geometric forms such as 
  * triangular, pentagonal, etc., are assumed), and a pair (x,y) of coordinates 
  * in the matricial environment.
