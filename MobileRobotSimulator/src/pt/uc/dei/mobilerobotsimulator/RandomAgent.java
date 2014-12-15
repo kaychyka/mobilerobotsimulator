@@ -30,6 +30,9 @@ public class RandomAgent extends Agent {
 		int index = rnd.nextInt(visibleObjects.size());
         Object selectedObject = visibleObjects.get(index);
         
+        //add object to memory
+        objectMemory.add(selectedObject);
+        
         moveToCoordinates(selectedObject.getCoordX(), selectedObject.coordY);
 	}
 

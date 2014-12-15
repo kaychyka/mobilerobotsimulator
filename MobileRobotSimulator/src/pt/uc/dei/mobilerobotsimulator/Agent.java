@@ -84,6 +84,13 @@ public abstract class Agent extends Entity{
 	public void moveToCoordinates(int x, int y){
 		this.coordX = x;
 		this.coordY = y;
+		
+		int[] coor = {x,y};
+		pathMemory.add(coor);
+		
+		//At each stop in an object, the agent should
+		//obtain the list of objects present in its visual field.
+		search();
 	}
 	
 	/**
