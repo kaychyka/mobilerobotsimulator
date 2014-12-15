@@ -94,6 +94,18 @@ public abstract class Agent extends Entity{
 	}
 	
 	/**
+	 * Check if current visited object was already visited or not.
+	 * @param obj
+	 */
+	public boolean differentObject(Object obj){
+		for (Object object : objectMemory) {
+			if(object.getID() == obj.getID())
+				return false;
+		}
+		return true;
+	}
+	
+	/**
      * @return objects that agent visited
      */
 	public ArrayList<Object> getObjectMemory() {

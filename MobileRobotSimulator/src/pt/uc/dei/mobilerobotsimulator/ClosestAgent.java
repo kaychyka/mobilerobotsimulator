@@ -37,6 +37,14 @@ public class ClosestAgent extends Agent{
 			}
 		}
 		
+		//increase the number of all visited objects
+        numOfObjects++;
+        
+        //check if agent already visited this object
+        //and in case it didn't increase the numOfDiffObjects
+        if(differentObject(closestObject))
+        	numOfDiffObjects++;        
+        
 		moveToCoordinates(closestObject.getCoordX(), closestObject.getCoordY());
 	}
 

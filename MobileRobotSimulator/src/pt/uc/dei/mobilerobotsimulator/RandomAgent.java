@@ -33,6 +33,14 @@ public class RandomAgent extends Agent {
         //add object to memory
         objectMemory.add(selectedObject);
         
+        //increase the number of all visited objects
+        numOfObjects++;
+        
+        //check if agent already visited this object
+        //and in case it didn't increase the numOfDiffObjects
+        if(differentObject(selectedObject))
+        	numOfDiffObjects++;
+        
         moveToCoordinates(selectedObject.getCoordX(), selectedObject.coordY);
 	}
 
