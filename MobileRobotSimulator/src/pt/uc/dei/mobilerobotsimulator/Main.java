@@ -40,8 +40,8 @@ public class Main {
 			try {entity = new RandomAgent(environment, id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.nextInt());
 				environment.addEntity(entity);
 				agents.add((Agent) entity);
-				entity.debug();
 				entity.limit();
+				entity.debug();
 				id++;
 			} catch (NoSuchElementException e) {
 				skip = 1;
@@ -57,8 +57,8 @@ public class Main {
 			Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
 			try {entity = new Object(environment, id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.next().toLowerCase());
 				environment.addEntity(entity);
-				entity.debug();
 				entity.limit();
+				entity.debug();
 				id++;
 			} catch (NoSuchElementException e) {
 				skip = 1;

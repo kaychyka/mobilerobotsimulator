@@ -56,7 +56,7 @@ public abstract class Agent extends Entity{
 				//the equation for looking for the points inside the radius
 				//(in our case inside the agents sight)
 				if(Math.abs(object.getCoordX() - this.coordX) <= (this.sight) && Math.abs(object.getCoordY() - this.coordY) <= (this.sight)
-						&& Math.abs(object.getCoordX() - this.coordX) > 0 && Math.abs(object.getCoordY() - this.coordY) > 0)
+						&& ((object.getCoordX() != this.coordX) || (object.getCoordY() != this.coordY)))
 					visibleObjects.add((Object)object);
 			}	
 		}
@@ -99,7 +99,7 @@ public abstract class Agent extends Entity{
 	
 	public void moveToRandomCoordinates(){
 		Random rnd = new Random();
-		System.out.print("Agent " + this.ID + " moving from " + this.coordX + "," + this.coordY);
+		System.out.print("Agent " + this.ID + " randomly moving from " + this.coordX + "," + this.coordY);
 		this.coordX += (-sight) + rnd.nextInt(sight*2 + 1);
 		this.coordY += (-sight) + rnd.nextInt(sight*2 + 1);
 		limit();
