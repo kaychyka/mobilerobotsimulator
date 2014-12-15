@@ -5,16 +5,18 @@ import java.io.*;
 
 /**
  * 
- * @author Karin Piškur (2014190802) and Pedro de Oliveira Estevão (2011157312)
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  *
  */
-public class Main {
 
-	public static void main(String[] args){
+public class Main {
+	
+		public static void main(String[] args){
 		int id = 0, x, y, skip = 0;
 		String input;
-		Environment environment;
 		Entity entity;
+		ArrayList<Agent> agents = new ArrayList<Agent>();
+		Environment environment;
 		
 		//Create the environment - Length
 		System.out.println("Environment size X");
@@ -27,17 +29,19 @@ public class Main {
 		y = inputY.nextInt();		
 		
 		//Create the environment - The creation
-		environment = new Environment();
+		environment = new Environment(x,y);
 
 		//Agent creation
 		while(skip == 0){
-			System.out.print("Agent input format: Color,Shape,X,Y,Sight");
+			System.out.println("Agent input format: Color,Shape,X,Y,Sight");
 			Scanner objectinput = new Scanner(System.in);
 			input = objectinput.next();
 			Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
-			try {entity = new RandomAgent(id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.nextInt());
+			try {entity = new RandomAgent(environment, id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.nextInt());
 				environment.addEntity(entity);
+				agents.add((Agent) entity);
 				entity.debug();
+				entity.limit();
 				id++;
 			} catch (NoSuchElementException e) {
 				skip = 1;
@@ -51,13 +55,29 @@ public class Main {
 			Scanner objectinput = new Scanner(System.in);
 			input = objectinput.next();
 			Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
-			try {entity = new Object(id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.next().toLowerCase());
+			try {entity = new Object(environment, id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.next().toLowerCase());
 				environment.addEntity(entity);
 				entity.debug();
+				entity.limit();
 				id++;
 			} catch (NoSuchElementException e) {
 				skip = 1;
 				System.out.println("Object creation ends");
+			}
+		}//while
+		skip = 0;
+		//Object manipulation
+		while(skip == 0){
+			System.out.println("Input exit to terminate");
+			Scanner objectinput = new Scanner(System.in);
+			input = objectinput.next();
+			if (input == "exit") { //terminate!!
+				skip = 1;
+				}
+			else { //move the objects
+				for (int i = 0; i < agents.size(); i++){
+					agents.get(i).choice();
+				}
 			}
 		}//while
 		

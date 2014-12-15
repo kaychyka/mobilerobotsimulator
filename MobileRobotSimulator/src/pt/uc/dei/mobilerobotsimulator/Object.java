@@ -2,7 +2,7 @@ package pt.uc.dei.mobilerobotsimulator;
 
 /**
  * 
- * @author Karin Piškur (2014190802) and Pedro de Oliveira Estevão (2011157312)
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  * 
  * Class Object represents subclass of the abstract class Entity,
  * This class represents objects in our environment, e.q. in the interior
@@ -12,8 +12,8 @@ package pt.uc.dei.mobilerobotsimulator;
 public class Object extends Entity{
 	private String type;
 	
-	public Object(int ID, String color, String shape, int coordX, int coordY, String type) {
-		super(ID, color, shape, coordX, coordY);
+	public Object(Environment environment, int ID, String color, String shape, int coordX, int coordY, String type) {
+		super(environment, ID, color, shape, coordX, coordY);
 		this.type = type;
 	}
 	

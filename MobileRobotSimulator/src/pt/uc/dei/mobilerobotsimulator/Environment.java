@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Karin Piškur (2014190802) and Pedro de Oliveira Estevão (2011157312)
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  *
  * This class represents the environment, which is a 2D matrix and
  * contains all of the entities.
@@ -14,6 +14,13 @@ import java.util.ArrayList;
 public class Environment {
 
 	protected static ArrayList<Entity> entitiesLocation = new ArrayList<Entity>();
+	private int sizeX;
+	private int sizeY;
+	
+	public Environment(int sizeX, int sizeY){
+		this.sizeX = sizeX;
+		this.sizeY = sizeY;
+	}
 	
 	/**
 	 * 
@@ -46,4 +53,19 @@ public class Environment {
 	public void addEntity(Entity entity){
 		entitiesLocation.add(entity);
 	}
+	
+	/**
+	 * @return size X
+	 */
+	public int getSizeX(){
+		return this.sizeX;
+	}
+	
+	/** 
+	 * @return size Y
+	 */
+	public int getSizeY(){
+		return this.sizeY;
+	}
+	
 }
