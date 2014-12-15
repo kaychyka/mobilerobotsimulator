@@ -1,6 +1,7 @@
 package pt.uc.dei.mobilerobotsimulator;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * 
@@ -54,7 +55,8 @@ public abstract class Agent extends Entity{
 			if (object instanceof Object) {
 				//the equation for looking for the points inside the radius
 				//(in our case inside the agents sight)
-				if(Math.abs(object.getCoordX() - this.coordX) <= (this.sight) && Math.abs(object.getCoordY() - this.coordY) <= (this.sight))
+				if(Math.abs(object.getCoordX() - this.coordX) <= (this.sight) 
+						&& Math.abs(object.getCoordY() - this.coordY) <= (this.sight))
 					visibleObjects.add((Object)object);
 			}	
 		}
@@ -63,6 +65,14 @@ public abstract class Agent extends Entity{
 		//so we have saved all objects in visible field 
 		//of the agent in its life
 		visualMemory.addAll(visibleObjects);
+		
+		//in case there is no Objects in visible field of the agent (FAQ Q.2)
+		//choose random position inside visual field
+		if(visualMemory.size()<1){
+			Random rnd = new Random();
+			int index = rnd.nextInt(this.sight);
+			moveToCoordinates(this.coordX+index, this.coordY+index);
+		}
 	}
 	
     /**
