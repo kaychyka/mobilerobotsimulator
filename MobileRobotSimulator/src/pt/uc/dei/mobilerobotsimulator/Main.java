@@ -72,27 +72,27 @@ public class Main {
 			System.out.println("Input exit to terminate, input mem to view memory");
 			Scanner objectinput = new Scanner(System.in);
 			input = objectinput.nextLine();
-			if (input == "exit") { //terminate!!
+			if (input.equals("exit")) { //terminate!!
 				skip = 1;
 				}
-			else if (input == "mem"){
+			else if (input.equals("mem")){
 				for (i = 0; i < agents.size(); i++){
 					//object
 					System.out.print("Object memory: ");
 					for (j = 0; j < agents.get(i).getObjectMemory().size(); j++){
-					System.out.print(agents.get(i).getObjectMemory().get(j).getID());
+					System.out.print(agents.get(i).getObjectMemory().get(j).getID() + " ");
 					}
 					System.out.print("\n");
 					//visual
 					System.out.print("Visual memory: ");
 					for (j = 0; j < agents.get(i).getVisualMemory().size(); j++){
-					System.out.print(agents.get(i).getVisualMemory().get(j).getID());
+					System.out.print(agents.get(i).getVisualMemory().get(j).getID() + " ");
 					}
 					System.out.print("\n");
 					//path
 					System.out.print("Path memory: ");
 					for (j = 0; j < agents.get(i).getPathMemory().size(); j++){
-					System.out.print(agents.get(i).getPathMemory().get(j));
+					System.out.print(agents.get(i).getPathMemory().get(j)[0] + "," + agents.get(i).getPathMemory().get(j)[1] + " ");
 					}
 					System.out.print("\n");
 				}				
