@@ -56,7 +56,6 @@ public class Main {
 				entity.debug();
 				id++;
 			} catch (NoSuchElementException e) {
-				
 				skip = 1;
 				System.out.println("Object creation ends");
 			}
