@@ -25,7 +25,7 @@ public class Object extends Entity{
 	}
 	
 	/**
-	 * method used for easier debuging
+	 * method used for easier debugging
 	 */
 	public void debug(){
 		System.out.println(ID + " " + color + " " + shape + " " + coordX + " " + coordY + " " + type);

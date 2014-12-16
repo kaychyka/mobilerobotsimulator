@@ -13,6 +13,7 @@ public class Main {
 	
 		public static void main(String[] args){
 		int id = 0, x, y, skip = 0;
+		int i, j;
 		String input;
 		Entity entity;
 		ArrayList<Agent> agents = new ArrayList<Agent>();
@@ -68,15 +69,37 @@ public class Main {
 		skip = 0;
 		//Object manipulation
 		while(skip == 0){
-			System.out.println("Input exit to terminate");
+			System.out.println("Input exit to terminate, input mem to view memory");
 			Scanner objectinput = new Scanner(System.in);
-			input = objectinput.next();
+			input = objectinput.nextLine();
 			if (input == "exit") { //terminate!!
 				skip = 1;
 				}
+			else if (input == "mem"){
+				for (i = 0; i < agents.size(); i++){
+					//object
+					System.out.print("Object memory: ");
+					for (j = 0; j < agents.get(i).getObjectMemory().size(); j++){
+					System.out.print(agents.get(i).getObjectMemory().get(j).getID());
+					}
+					System.out.print("\n");
+					//visual
+					System.out.print("Visual memory: ");
+					for (j = 0; j < agents.get(i).getVisualMemory().size(); j++){
+					System.out.print(agents.get(i).getVisualMemory().get(j).getID());
+					}
+					System.out.print("\n");
+					//path
+					System.out.print("Path memory: ");
+					for (j = 0; j < agents.get(i).getPathMemory().size(); j++){
+					System.out.print(agents.get(i).getPathMemory().get(j));
+					}
+					System.out.print("\n");
+				}				
+			}
 			else { //move the objects
-				for (int i = 0; i < agents.size(); i++){
-					agents.get(i).choice();
+				for (i = 0; i < agents.size(); i++){
+					agents.get(i).choice();					
 				}
 			}
 		}//while
