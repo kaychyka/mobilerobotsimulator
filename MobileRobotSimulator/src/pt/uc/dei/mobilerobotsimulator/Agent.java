@@ -5,7 +5,7 @@ import java.util.Random;
 
 /**
  * 
- * @author Karin Piškur (2014190802) and Pedro de Oliveira Estevão (2011157312)
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  * 
  * Agent represents the robot. 
  * The agents move throughout the environment exploring it in order to acquire 
@@ -38,8 +38,8 @@ public abstract class Agent extends Entity{
 	protected int numOfDiffObjects;
 	protected int distance;
 	
-	public Agent(int ID, String color, String shape, int coordX, int coordY, int sight) {
-		super(ID, color, shape, coordX, coordY);
+	public Agent(Environment environment, int ID, String color, String shape, int coordX, int coordY, int sight) {
+		super(environment, ID, color, shape, coordX, coordY);
 		this.sight = sight;
 	}
 	
@@ -55,8 +55,8 @@ public abstract class Agent extends Entity{
 			if (object instanceof Object) {
 				//the equation for looking for the points inside the radius
 				//(in our case inside the agents sight)
-				if(Math.abs(object.getCoordX() - this.coordX) <= (this.sight) 
-						&& Math.abs(object.getCoordY() - this.coordY) <= (this.sight))
+				if(Math.abs(object.getCoordX() - this.coordX) <= (this.sight) && Math.abs(object.getCoordY() - this.coordY) <= (this.sight)
+						&& ((object.getCoordX() != this.coordX) || (object.getCoordY() != this.coordY)))
 					visibleObjects.add((Object)object);
 			}	
 		}
@@ -91,10 +91,29 @@ public abstract class Agent extends Entity{
 	 * @param coordinates of next
 	 */
 	public void moveToCoordinates(int x, int y){
+		System.out.print("Agent " + this.ID + " moving from " + this.coordX + "," + this.coordY);
 		this.coordX = x;
 		this.coordY = y;
 		
-		int[] coor = {x,y};
+		
+		System.out.println(" to " + this.coordX + "," + this.coordY);
+		int[] coor = {this.coordX,this.coordY};
+		pathMemory.add(coor);
+		
+		//At each stop in an object, the agent should
+		//obtain the list of objects present in its visual field.
+		search();
+	}
+	
+	public void moveToRandomCoordinates(){
+		Random rnd = new Random();
+		System.out.print("Agent " + this.ID + " randomly moving from " + this.coordX + "," + this.coordY);
+		this.coordX += (-sight) + rnd.nextInt(sight*2 + 1);
+		this.coordY += (-sight) + rnd.nextInt(sight*2 + 1);
+		limit();
+		
+		System.out.println(" to " + this.coordX + "," + this.coordY);
+		int[] coor = {this.coordX,this.coordY};
 		pathMemory.add(coor);
 		
 		//At each stop in an object, the agent should

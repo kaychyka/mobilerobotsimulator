@@ -2,7 +2,7 @@ package pt.uc.dei.mobilerobotsimulator;
 
 /**
  * 
- * @author Karin Piškur (2014190802) and Pedro de Oliveira Estevão (2011157312)
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  * 
  * This agent uses strategy of the maximum difference to the objects stored in memory: 
  * this strategy allows the agent to select as the next point of view the object 
@@ -12,9 +12,9 @@ package pt.uc.dei.mobilerobotsimulator;
  */
 public class DifferenceAgent extends Agent {
 
-	public DifferenceAgent(int ID, String color, String shape, int coordX,
+	public DifferenceAgent(Environment environment, int ID, String color, String shape, int coordX,
 			int coordY, int sight) {
-		super(ID, color, shape, coordX, coordY, sight);
+		super(environment, ID, color, shape, coordX, coordY, sight);
 		// TODO Auto-generated constructor stub
 	}
 
