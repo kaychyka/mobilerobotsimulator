@@ -109,6 +109,9 @@ public abstract class Agent extends Entity{
 		//search();
 	}
 	
+	/**
+	 * Move agent to random coordinates 
+	 */
 	public void moveToRandomCoordinates(){
 		Random rnd = new Random();
 		System.out.print("Agent " + this.ID + " randomly moving from " + this.coordX + "," + this.coordY);
@@ -125,8 +128,10 @@ public abstract class Agent extends Entity{
 	
 	/**
 	 * Check if current visited object was already visited or not.
-	 * @param obj
 	 * 
+	 * @param obj - object we want to check
+	 * @return true - if the object is different, wasn't visited yet
+	 * @return false - if the object was already visited
 	 */
 	public boolean differentObject(Object obj){
 		for (Object object : objectMemory) {

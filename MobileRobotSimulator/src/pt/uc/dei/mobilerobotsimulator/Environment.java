@@ -23,46 +23,22 @@ public class Environment {
 	}
 	
 	/**
-	 * 
-	 * With this method we check the location of the entity.
-	 * 
-	 * @param ent - Entity for which we need the location
-	 * @return location of the entity
+	 * Add entity in the environment
+	 * @param entity - entity which is added to environment
 	 */
-	public int[] getLocation(Entity ent){
-		int[] location = new int[2];
-		for (Entity entity : entitiesLocation) {
-			if(entity.getID() == ent.getID()){
-				location[0] = entity.getCoordX();
-				location[1] = entity.getCoordY();
-			}
-		}
-		return location;
-	}
-	
-	/**
-	 * 
-	 * @param entity - Entity of which location we want to change/set
-	 * @param x - Coordinate x of the entity
-	 * @param y - Coordinate y of the entity
-	 */
-	public void setLocation(Entity entity, int x, int y){
-		//TODO
-	}
-	
 	public void addEntity(Entity entity){
 		entitiesLocation.add(entity);
 	}
 	
 	/**
-	 * @return size X
+	 * @return size X of the environment
 	 */
 	public int getSizeX(){
 		return this.sizeX;
 	}
 	
 	/** 
-	 * @return size Y
+	 * @return size Y of the environment
 	 */
 	public int getSizeY(){
 		return this.sizeY;

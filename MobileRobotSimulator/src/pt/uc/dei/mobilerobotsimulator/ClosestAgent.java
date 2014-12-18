@@ -48,5 +48,4 @@ public class ClosestAgent extends Agent{
         
 		moveToCoordinates(closestObject.getCoordX(), closestObject.getCoordY());
 	}
-
 }
