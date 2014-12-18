@@ -80,24 +80,23 @@ public class Main {
 					//object
 					System.out.print("Object memory: ");
 					for (j = 0; j < agents.get(i).getObjectMemory().size(); j++){
-					System.out.print(agents.get(i).getObjectMemory().get(j).getID() + " ");
+						System.out.print(agents.get(i).getObjectMemory().get(j).getID() + " ");
 					}
-					System.out.print("\n");
+						System.out.print("\n");
 					//visual
-					System.out.print("Visual memory: ");
+						System.out.print("Visual memory: ");
 					for (j = 0; j < agents.get(i).getVisualMemory().size(); j++){
-					System.out.print(agents.get(i).getVisualMemory().get(j).getID() + " ");
+						System.out.print(agents.get(i).getVisualMemory().get(j).getID() + " ");
 					}
-					System.out.print("\n");
+						System.out.print("\n");
 					//path
-					System.out.print("Path memory: ");
+						System.out.print("Path memory: ");
 					for (j = 0; j < agents.get(i).getPathMemory().size(); j++){
-					System.out.print(agents.get(i).getPathMemory().get(j)[0] + "," + agents.get(i).getPathMemory().get(j)[1] + " ");
+						System.out.print(agents.get(i).getPathMemory().get(j)[0] + "," + agents.get(i).getPathMemory().get(j)[1] + " ");
 					}
 					System.out.print("\n");
 				}				
-			}
-			else { //move the objects
+			} else { //move the objects
 				for (i = 0; i < agents.size(); i++){
 					agents.get(i).choice();					
 				}
