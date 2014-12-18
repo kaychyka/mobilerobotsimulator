@@ -84,11 +84,13 @@ public abstract class Agent extends Entity{
 	public abstract void choice();
 	
 	/**
+	 * 
 	 * Move agent to coordinates 
 	 * (e.g. where is new selected object,
 	 * which we picked in choice method or just to new location)
-	 * 
-	 * @param coordinates of next
+	 * 	 
+	 * @param x - coordinate x of next agent's position 
+	 * @param y - coordinate y of next agent's position
 	 */
 	public void moveToCoordinates(int x, int y){
 		System.out.print("Agent " + this.ID + " moving from " + this.coordX + "," + this.coordY);
@@ -124,6 +126,7 @@ public abstract class Agent extends Entity{
 	/**
 	 * Check if current visited object was already visited or not.
 	 * @param obj
+	 * 
 	 */
 	public boolean differentObject(Object obj){
 		for (Object object : objectMemory) {
