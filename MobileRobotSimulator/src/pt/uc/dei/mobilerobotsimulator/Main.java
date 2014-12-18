@@ -68,6 +68,9 @@ public class Main {
 		}//while
 		skip = 0;
 		//Object manipulation
+		for (i = 0; i < agents.size(); i++){ //add initial positions to memory
+			agents.get(i).search();
+		}
 		while(skip == 0){
 			System.out.println("Input exit to terminate, input mem to view memory");
 			Scanner objectinput = new Scanner(System.in);
@@ -95,11 +98,18 @@ public class Main {
 					System.out.print(agents.get(i).getPathMemory().get(j)[0] + "," + agents.get(i).getPathMemory().get(j)[1] + " ");
 					}
 					System.out.print("\n");
+					//visible objects
+					System.out.print("Visible objects: ");
+					for (j = 0; j < agents.get(i).getVisibleObjects().size(); j++){
+					System.out.print(agents.get(i).getVisibleObjects().get(j).getID() + " ");
+					}
+					System.out.print("\n");
 				}				
 			}
 			else { //move the objects
 				for (i = 0; i < agents.size(); i++){
-					agents.get(i).choice();					
+					agents.get(i).choice();	
+					agents.get(i).search();
 				}
 			}
 		}//while

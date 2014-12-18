@@ -24,7 +24,7 @@ public class RandomAgent extends Agent {
 	@Override
 	public void choice() {
 		//search for all Objects in visual field
-		search();
+		//search();
 		
 		Random rnd = new Random();
 		if (visibleObjects.size() > 0) {

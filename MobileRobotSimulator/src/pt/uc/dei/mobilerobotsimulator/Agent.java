@@ -66,13 +66,17 @@ public abstract class Agent extends Entity{
 		//of the agent in its life
 		visualMemory.addAll(visibleObjects);
 		
+		//add the position to path memory
+		int[] coor = {this.coordX,this.coordY};
+		pathMemory.add(coor);
+		
 		//in case there is no Objects in visible field of the agent (FAQ Q.2)
 		//choose random position inside visual field
-		if(visualMemory.size()<1){
+		/*if(visualMemory.size()<1){
 			Random rnd = new Random();
 			int index = rnd.nextInt(this.sight);
 			moveToCoordinates(this.coordX+index, this.coordY+index);
-		}
+		}*/
 	}
 	
     /**
@@ -97,12 +101,10 @@ public abstract class Agent extends Entity{
 		
 		
 		System.out.println(" to " + this.coordX + "," + this.coordY);
-		int[] coor = {this.coordX,this.coordY};
-		pathMemory.add(coor);
 		
 		//At each stop in an object, the agent should
 		//obtain the list of objects present in its visual field.
-		search();
+		//search();
 	}
 	
 	public void moveToRandomCoordinates(){
@@ -113,12 +115,10 @@ public abstract class Agent extends Entity{
 		limit();
 		
 		System.out.println(" to " + this.coordX + "," + this.coordY);
-		int[] coor = {this.coordX,this.coordY};
-		pathMemory.add(coor);
 		
 		//At each stop in an object, the agent should
 		//obtain the list of objects present in its visual field.
-		search();
+		//search();
 	}
 	
 	/**
