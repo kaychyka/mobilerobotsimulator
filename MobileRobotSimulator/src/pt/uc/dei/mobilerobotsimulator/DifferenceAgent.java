@@ -15,13 +15,34 @@ public class DifferenceAgent extends Agent {
 	public DifferenceAgent(Environment environment, int ID, String color, String shape, int coordX,
 			int coordY, int sight) {
 		super(environment, ID, color, shape, coordX, coordY, sight);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void choice() {
-		// TODO Auto-generated method stub
-
+		if (visibleObjects.size() > 0) {
+			Object differentObject = null;
+			for (Object object : objectMemory) {
+				
+			}
+			
+			//add object to memory
+			objectMemory.add(differentObject);
+			
+			//increase the number of all visited objects
+	        numOfObjects++;
+	        
+	        //check if agent already visited this object
+	        //and in case it didn't increase the numOfDiffObjects
+	        if(differentObject(differentObject))
+	        	numOfDiffObjects++;        
+	        
+			moveToCoordinates(differentObject.getCoordX(), differentObject.getCoordY());
+		} else {
+			moveToRandomCoordinates();
+		}
 	}
 
+	private void compareObjects(Object oldObject, Object newObject){
+		
+	}
 }

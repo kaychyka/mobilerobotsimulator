@@ -23,29 +23,37 @@ public class ClosestAgent extends Agent{
 	@Override
 	public void choice() {
 		//search for all Objects in visual field
-		search();
+		//search();
 		
 		//current the smallest distance between agent 
 		//and object inside of its visible field
 		double smallestDist = -1;
 		Object closestObject = null;
-		for (Object object : objectMemory) {
-			double tmpDist = Math.sqrt(Math.pow((object.getCoordX() - this.coordX), 2) 
-					+ Math.pow((object.getCoordY() - this.coordY),2));
-			if(tmpDist<smallestDist){
-				smallestDist=tmpDist;
-				closestObject = object;
+		if (visibleObjects.size() > 0) {
+			closestObject = visibleObjects.get(0);
+			for (Object object : visibleObjects) {
+				double tmpDist = Math.sqrt(Math.pow((object.getCoordX() - this.coordX), 2) 
+						+ Math.pow((object.getCoordY() - this.coordY),2));
+				if(tmpDist<smallestDist){
+					smallestDist=tmpDist;
+					closestObject = object;
+				}
 			}
+			
+			//add object to memory
+			objectMemory.add(closestObject);
+			
+			//increase the number of all visited objects
+	        numOfObjects++;
+	        
+	        //check if agent already visited this object
+	        //and in case it didn't increase the numOfDiffObjects
+	        if(differentObject(closestObject))
+	        	numOfDiffObjects++;        
+	        
+			moveToCoordinates(closestObject.getCoordX(), closestObject.getCoordY());
+		} else {
+			moveToRandomCoordinates();
 		}
-		
-		//increase the number of all visited objects
-        numOfObjects++;
-        
-        //check if agent already visited this object
-        //and in case it didn't increase the numOfDiffObjects
-        if(differentObject(closestObject))
-        	numOfDiffObjects++;        
-        
-		moveToCoordinates(closestObject.getCoordX(), closestObject.getCoordY());
 	}
 }

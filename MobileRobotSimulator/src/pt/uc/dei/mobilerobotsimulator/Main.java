@@ -6,71 +6,132 @@ import java.io.*;
 /**
  * 
  * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
- *
+( *
  */
 
 public class Main {
 	
-		public static void main(String[] args){
+	/**
+	 * It generates all Enviroment, Agents and Objects, based on File objects.txt
+	 * @param agents
+	 */
+	private static void generateEnviroment(ArrayList<Agent> agents){
 		int id = 0, x, y, skip = 0;
-		int i, j;
-		String input;
 		Entity entity;
-		ArrayList<Agent> agents = new ArrayList<Agent>();
 		Environment environment;
 		
-		//Create the environment - Length
-		System.out.println("Environment size X");
-		Scanner inputX = new Scanner(System.in);
-		x = inputX.nextInt();
-		
-		//Create the environment - Height
-		System.out.println("Environment size Y");
-		Scanner inputY = new Scanner(System.in);
-		y = inputY.nextInt();		
-		
-		//Create the environment - The creation
-		environment = new Environment(x,y);
-
-		//Agent creation
-		while(skip == 0){
-			System.out.println("Agent input format: Color,Shape,X,Y,Sight");
-			Scanner objectinput = new Scanner(System.in);
-			input = objectinput.next();
-			Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
-			try {entity = new RandomAgent(environment, id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.nextInt());
-				environment.addEntity(entity);
-				agents.add((Agent) entity);
-				entity.limit();
-				entity.debug();
-				id++;
-			} catch (NoSuchElementException e) {
-				skip = 1;
-				System.out.println("Moving to object creation...");
+		try{
+			File f = new File("objects.txt");
+			FileReader fr = new FileReader(f);
+	        BufferedReader br = new BufferedReader(fr);
+	        String[] enviromentSize = br.readLine().split(",");
+	        
+			//Create the environment - Length
+	        x = Integer.parseInt(enviromentSize[0]);
+			System.out.println("Environment size X: "+x);
+	//		Scanner inputX = new Scanner(System.in);
+	//		x = inputX.nextInt();
+			
+			
+			//Create the environment - Height
+	        y = Integer.parseInt(enviromentSize[1]);
+			System.out.println("Environment size Y: "+y);
+	//		Scanner inputY = new Scanner(System.in);
+	//		y = inputY.nextInt();		
+			
+			//Create the environment - The creation
+			environment = new Environment(x,y);
+	
+			//Agent creation
+			while(skip == 0){
+	//			System.out.println("Agent input format: Color,Shape,X,Y,Sight");
+	//			Scanner objectinput = new Scanner(System.in);
+	//			input = objectinput.next();
+	//			Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
+	//			try {entity = new RandomAgent(environment, id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.nextInt());
+				String[] agentData = br.readLine().split(",");
+				if(agentData.length > 1){
+					if(Integer.parseInt(agentData[0])==0){
+						try {entity = new RandomAgent(environment, id, agentData[1].toLowerCase(), agentData[2].toLowerCase(), Integer.parseInt(agentData[3]), Integer.parseInt(agentData[4]), Integer.parseInt(agentData[5]));	
+							environment.addEntity(entity);
+							agents.add((Agent) entity);
+							entity.limit();
+							entity.debug();
+							id++;
+						} catch (NoSuchElementException e) {
+							skip = 1;
+							System.out.println("Moving to object creation...");
+						}
+					}else if(Integer.parseInt(agentData[0])==1){
+						try {entity = new ClosestAgent(environment, id, agentData[1].toLowerCase(), agentData[2].toLowerCase(), Integer.parseInt(agentData[3]), Integer.parseInt(agentData[4]), Integer.parseInt(agentData[5]));	
+							environment.addEntity(entity);
+							agents.add((Agent) entity);
+							entity.limit();
+							entity.debug();
+							id++;
+						} catch (NoSuchElementException e) {
+							skip = 1;
+							System.out.println("Moving to object creation...");
+						}
+					}else if(Integer.parseInt(agentData[0])==2){
+						try {entity = new RandomAgent(environment, id, agentData[1].toLowerCase(), agentData[2].toLowerCase(), Integer.parseInt(agentData[3]), Integer.parseInt(agentData[4]), Integer.parseInt(agentData[5]));	
+							environment.addEntity(entity);
+							agents.add((Agent) entity);
+							entity.limit();
+							entity.debug();
+							id++;
+						} catch (NoSuchElementException e) {
+							skip = 1;
+							System.out.println("Moving to object creation...");
+						}
+					}
+				} else {
+					skip = 1;
+					System.out.println("Moving to object creation...");
+				}
+			}//while
+			skip = 0;
+			//Object creation
+			while(skip == 0){
+//				System.out.println("Object input format: Color,Shape,X,Y,Type");
+//				Scanner objectinput = new Scanner(System.in);
+//				input = objectinput.next();
+//				Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
+//				try {entity = new Object(environment, id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.next().toLowerCase());
+				String[] objectData = br.readLine().split(",");
+				if(objectData.length > 1){
+					try {entity = new Object(environment, id, objectData[0].toLowerCase(), objectData[1].toLowerCase(), Integer.parseInt(objectData[2]), Integer.parseInt(objectData[3]), objectData[4].toLowerCase());	
+						environment.addEntity(entity);
+						entity.limit();
+						entity.debug();
+						id++;
+					} catch (NoSuchElementException e) {
+						skip = 1;
+						System.out.println("Object creation ends");
+					}
+				} else {
+					skip = 1;
+					System.out.println("Object creation ends");
+				}
+			}//while
+			skip = 0;
+			//Object manipulation
+			for (int i = 0; i < agents.size(); i++){ //add initial positions to memory
+				agents.get(i).search();
 			}
-		}//while
-		skip = 0;
-		//Object creation
-		while(skip == 0){
-			System.out.println("Object input format: Color,Shape,X,Y,Type");
-			Scanner objectinput = new Scanner(System.in);
-			input = objectinput.next();
-			Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
-			try {entity = new Object(environment, id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.next().toLowerCase());
-				environment.addEntity(entity);
-				entity.limit();
-				entity.debug();
-				id++;
-			} catch (NoSuchElementException e) {
-				skip = 1;
-				System.out.println("Object creation ends");
-			}
-		}//while
-		skip = 0;
-		//Object manipulation
-		for (i = 0; i < agents.size(); i++){ //add initial positions to memory
-			agents.get(i).search();
+		} catch (IOException e ){
+			
 		}
+	}
+	
+	/**
+	 * it moves the agent, or in case "mem" it prints the memories of agent
+	 * or in case of "exit" the program stops
+	 * @param agents
+	 */
+	private static void moveOrprintDataOrExit(ArrayList<Agent> agents){
+		int skip = 0;
+		String input;
 		while(skip == 0){
 			System.out.println("Input exit to terminate, input mem to view memory");
 			Scanner objectinput = new Scanner(System.in);
@@ -79,39 +140,52 @@ public class Main {
 				skip = 1;
 				}
 			else if (input.equals("mem")){
-				for (i = 0; i < agents.size(); i++){
+				for (int i = 0; i < agents.size(); i++){
 					//object
 					System.out.print("Object memory: ");
-					for (j = 0; j < agents.get(i).getObjectMemory().size(); j++){
-						System.out.print(agents.get(i).getObjectMemory().get(j).getID() + " ");
+					for (int j = 0; j < agents.get(i).getObjectMemory().size(); j++){
+						System.out.print(agents.get(i).getObjectMemory().get(j).getID() + ", ");
 					}
-						System.out.print("\n");
+						System.out.println();
 					//visual
 						System.out.print("Visual memory: ");
-					for (j = 0; j < agents.get(i).getVisualMemory().size(); j++){
-						System.out.print(agents.get(i).getVisualMemory().get(j).getID() + " ");
+					for (int j = 0; j < agents.get(i).getVisualMemory().size(); j++){
+						System.out.print(agents.get(i).getVisualMemory().get(j).getID() + ", ");
 					}
-						System.out.print("\n");
+						System.out.println();
 					//path
 						System.out.print("Path memory: ");
-					for (j = 0; j < agents.get(i).getPathMemory().size(); j++){
-						System.out.print(agents.get(i).getPathMemory().get(j)[0] + "," + agents.get(i).getPathMemory().get(j)[1] + " ");
+					for (int j = 0; j < agents.get(i).getPathMemory().size(); j++){
+						System.out.print("["+agents.get(i).getPathMemory().get(j)[0] + "," + agents.get(i).getPathMemory().get(j)[1] + "], ");
 					}
-					System.out.print("\n");
+					System.out.println();
 					//visible objects
 					System.out.print("Visible objects: ");
-					for (j = 0; j < agents.get(i).getVisibleObjects().size(); j++){
-					System.out.print(agents.get(i).getVisibleObjects().get(j).getID() + " ");
+					for (int j = 0; j < agents.get(i).getVisibleObjects().size(); j++){
+						System.out.print(agents.get(i).getVisibleObjects().get(j).getID() + ", ");
 					}
-					System.out.print("\n");
-				}				
+					System.out.println();
+					System.out.print("Distance: "+agents.get(i).getDistance());
+					System.out.println("\n");
+					
+				}	
+				
 			} else { //move the objects
-				for (i = 0; i < agents.size(); i++){
+				for (int i = 0; i < agents.size(); i++){
 					agents.get(i).choice();	
 					agents.get(i).search();
 				}
 			}
 		}//while
+	}
+	
+	public static void main(String[] args){
+		ArrayList<Agent> agents = new ArrayList<Agent>();
+		
+		generateEnviroment(agents);
+		
+		moveOrprintDataOrExit(agents);
+		
 		
 	}//main
 }//class
