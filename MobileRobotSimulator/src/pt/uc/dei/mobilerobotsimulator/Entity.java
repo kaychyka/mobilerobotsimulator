@@ -65,10 +65,13 @@ public abstract class Entity {
 	}
 
 	/**
-	 * method used for easier debuging
+	 * method used for easier debugging
 	 */
 	public abstract void debug();
 	
+	/**
+	 * Prevents the entity from being placed outside environment
+	 */
 	public void limit(){
 		this.coordX = Math.min(this.coordX, environment.getSizeX());
 		this.coordY = Math.min(this.coordY, environment.getSizeY());
