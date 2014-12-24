@@ -36,7 +36,7 @@ public abstract class Agent extends Entity{
 	protected int sight;
 	protected int numOfObjects;
 	protected int numOfDiffObjects;
-	protected int distance;
+	protected double distance;
 	
 	public Agent(Environment environment, int ID, String color, String shape, int coordX, int coordY, int sight) {
 		super(environment, ID, color, shape, coordX, coordY);
@@ -79,6 +79,19 @@ public abstract class Agent extends Entity{
 		}*/
 	}
 	
+	/**
+	 * Increase the distance with a distance from old to new location
+	 * 
+	 * @param oldX - old coordinate X of the agent
+	 * @param oldY - old coordinate Y of the agent
+	 * @param newX - new coordinate X of the agent
+	 * @param newY - new coordinate X of the agent
+	 */
+	private void increaseDistance(int oldX, int oldY, int newX, int newY){
+		double dist = Math.sqrt(Math.pow((oldX - newX), 2) + Math.pow((oldY - newY),2));
+		distance += dist;
+	}
+	
     /**
      * With this method we choose which object we will visit next
      * 
@@ -97,7 +110,10 @@ public abstract class Agent extends Entity{
 	 * @param y - coordinate y of next agent's position
 	 */
 	public void moveToCoordinates(int x, int y){
-		System.out.print("Agent " + this.ID + " moving from " + this.coordX + "," + this.coordY);
+		int oldX = this.coordX;
+		int oldY = this.coordY;
+		System.out.print("Agent " + this.ID + " moving from " + oldX + "," + oldY);
+		
 		this.coordX = x;
 		this.coordY = y;
 		
@@ -107,6 +123,8 @@ public abstract class Agent extends Entity{
 		//At each stop in an object, the agent should
 		//obtain the list of objects present in its visual field.
 		//search();
+		
+		increaseDistance(oldX, oldY, this.coordX, this.coordY);
 	}
 	
 	/**
@@ -114,7 +132,10 @@ public abstract class Agent extends Entity{
 	 */
 	public void moveToRandomCoordinates(){
 		Random rnd = new Random();
-		System.out.print("Agent " + this.ID + " randomly moving from " + this.coordX + "," + this.coordY);
+		int oldX = this.coordX;
+		int oldY = this.coordY;
+		System.out.print("Agent " + this.ID + " randomly moving from " + oldX + "," + oldY);
+		
 		this.coordX += (-sight) + rnd.nextInt(sight*2 + 1);
 		this.coordY += (-sight) + rnd.nextInt(sight*2 + 1);
 		limit();
@@ -124,6 +145,8 @@ public abstract class Agent extends Entity{
 		//At each stop in an object, the agent should
 		//obtain the list of objects present in its visual field.
 		//search();
+		
+		increaseDistance(oldX, oldY, this.coordX, this.coordY);
 	}
 	
 	/**
@@ -193,7 +216,7 @@ public abstract class Agent extends Entity{
     /**
      * @return distance that agent already made
      */
-	public int getDistance() {
+	public double getDistance() {
 		return distance;
 	}
 	
