@@ -220,6 +220,11 @@ public abstract class Agent extends Entity{
 		return distance;
 	}
 	
+	@Override
+	public String toString() {
+		return "ID: "+ ID + " color: " + color + " shape: " + shape + " X:" + coordX + " Y:" + coordY + " sight: " + sight;
+	}
+	
 	public void debug(){
 		System.out.println(ID + " " + color + " " + shape + " " + coordX + " " + coordY + " " + sight);
 	}
