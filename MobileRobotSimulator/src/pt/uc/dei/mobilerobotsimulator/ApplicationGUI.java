@@ -6,18 +6,14 @@
 package pt.uc.dei.mobilerobotsimulator;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
-import javax.swing.JPanel;
-
 /**
  *
- * @author Karin
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  */
 public class ApplicationGUI extends javax.swing.JFrame {
-    private String fileName, text = "nicni";
+    private String fileName, folderName;
     private ArrayList<Agent> agents = new ArrayList<Agent>();;
     /**
      * Creates new form SimulatorGUI
@@ -38,11 +34,15 @@ public class ApplicationGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser = new javax.swing.JFileChooser();
+        jFolderChooser = new javax.swing.JFileChooser();
         browseFilePanel = new javax.swing.JPanel();
         selectFile = new javax.swing.JLabel();
         selectFileTF = new javax.swing.JTextField();
-        btnBrowse = new javax.swing.JButton();
+        btnBrowseFile = new javax.swing.JButton();
         btnOK = new javax.swing.JButton();
+        selectFolder = new javax.swing.JLabel();
+        selectFolderTF = new javax.swing.JTextField();
+        btnBrowseFolder = new javax.swing.JButton();
         showDataPanel = new javax.swing.JPanel();
         agentsMemoryData = new javax.swing.JLabel();
         btnFinish = new javax.swing.JButton();
@@ -52,12 +52,12 @@ public class ApplicationGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        selectFile.setText("Select file: ");
+        selectFile.setText("Select file for creating environment and entities: ");
 
-        btnBrowse.setText("Browse");
-        btnBrowse.addActionListener(new java.awt.event.ActionListener() {
+        btnBrowseFile.setText("Browse");
+        btnBrowseFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBrowseActionPerformed(evt);
+                btnBrowseFileActionPerformed(evt);
             }
         });
 
@@ -69,6 +69,15 @@ public class ApplicationGUI extends javax.swing.JFrame {
             }
         });
 
+        selectFolder.setText("Select folder where you want to save data about agents: ");
+
+        btnBrowseFolder.setText("Browse");
+        btnBrowseFolder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBrowseFolderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout browseFilePanelLayout = new javax.swing.GroupLayout(browseFilePanel);
         browseFilePanel.setLayout(browseFilePanelLayout);
         browseFilePanelLayout.setHorizontalGroup(
@@ -76,27 +85,37 @@ public class ApplicationGUI extends javax.swing.JFrame {
             .addGroup(browseFilePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(browseFilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectFileTF)
                     .addGroup(browseFilePanelLayout.createSequentialGroup()
-                        .addComponent(selectFile)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectFileTF))
+                        .addGroup(browseFilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(selectFile)
+                            .addComponent(selectFolder))
+                        .addGap(0, 81, Short.MAX_VALUE))
+                    .addComponent(selectFolderTF)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, browseFilePanelLayout.createSequentialGroup()
-                        .addGap(0, 280, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(browseFilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnOK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBrowse, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))))
+                            .addComponent(btnBrowseFolder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnOK, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(btnBrowseFile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         browseFilePanelLayout.setVerticalGroup(
             browseFilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(browseFilePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(browseFilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selectFile)
-                    .addComponent(selectFileTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(selectFile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBrowse)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addComponent(selectFileTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBrowseFile)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(selectFolder)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(selectFolderTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBrowseFolder)
+                .addGap(61, 61, 61)
                 .addComponent(btnOK)
                 .addContainerGap())
         );
@@ -185,17 +204,20 @@ public class ApplicationGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void btnBrowseFileActionPerformed(java.awt.event.ActionEvent evt) {                                              
         int returnVal = jFileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = jFileChooser.getSelectedFile();
             fileName = file.getAbsolutePath();
             selectFileTF.setText(fileName);
-            btnOK.setEnabled(true);
+
+            if(folderName != null)
+                if(fileName != null)
+                    btnOK.setEnabled(true);
         } else {
             System.out.println("File access cancelled by user.");
         }
-    }                                         
+    }                                             
 
     private void btnFinishActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
@@ -211,9 +233,28 @@ public class ApplicationGUI extends javax.swing.JFrame {
         browseFilePanel.setVisible(false);
         showDataPanel.setVisible(true);
         Main.generateEnviroment(agents, fileName);
-        agentsDetailsTP.setText(Main.returnData(agents, 10));
+        agentsDetailsTP.setText(Main.returnData(agents, 10, folderName));
         //System.out.println(text);
     }                                     
+
+    private void btnBrowseFolderActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        // TODO add your handling code here:
+        jFolderChooser.setCurrentDirectory(new java.io.File("."));
+        jFolderChooser.setDialogTitle("Select Folder");
+        jFolderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jFolderChooser.setAcceptAllFileFilterUsed(false);
+
+        if (jFolderChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            folderName = jFolderChooser.getSelectedFile().toString();
+            selectFolderTF.setText(folderName);
+            
+            if(folderName != null)
+                if(fileName != null)
+                    btnOK.setEnabled(true);
+        } else {
+            System.out.println("No Selection ");
+        }
+    }                                               
 
     /**
      * @param args the command line arguments
@@ -257,14 +298,18 @@ public class ApplicationGUI extends javax.swing.JFrame {
     private javax.swing.JTextPane agentsDetailsTP;
     private javax.swing.JLabel agentsMemoryData;
     private javax.swing.JPanel browseFilePanel;
-    private javax.swing.JButton btnBrowse;
+    private javax.swing.JButton btnBrowseFile;
+    private javax.swing.JButton btnBrowseFolder;
     private javax.swing.JButton btnFinish;
     private javax.swing.JButton btnOK;
     private javax.swing.JButton btnShowMap;
     private javax.swing.JFileChooser jFileChooser;
+    private javax.swing.JFileChooser jFolderChooser;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel selectFile;
     private javax.swing.JTextField selectFileTF;
+    private javax.swing.JLabel selectFolder;
+    private javax.swing.JTextField selectFolderTF;
     private javax.swing.JPanel showDataPanel;
     // End of variables declaration                   
 }

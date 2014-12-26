@@ -24,6 +24,10 @@ public class Object extends Entity{
 		return type;
 	}
 	
+	@Override
+	public String toString() {
+		return "Object: ID: "+ID + ", color: " + color + ", shape: " + shape + ", X: " + coordX + ", Y: " + coordY + ", type: " + type+"\n";
+	}
 	/**
 	 * method used for easier debugging
 	 */

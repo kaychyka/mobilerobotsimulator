@@ -222,7 +222,7 @@ public abstract class Agent extends Entity{
 	
 	@Override
 	public String toString() {
-		return "ID: "+ ID + " color: " + color + " shape: " + shape + " X:" + coordX + " Y:" + coordY + " sight: " + sight;
+		return "Agent: ID: "+ ID + ", color: " + color + ", shape: " + shape + ", X: " + coordX + ", Y: " + coordY + ", sight: " + sight+"\n";
 	}
 	
 	public void debug(){

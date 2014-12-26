@@ -6,14 +6,18 @@ import java.io.*;
 /**
  * 
  * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
-( *
+ *
  */
 
 public class Main {
 	
 	/**
-	 * It generates all Enviroment, Agents and Objects, based on File objects.txt
-	 * @param agents
+	 * It generates all Environment, Agents and Objects, based on data in file
+	 * @param agents - empty list of agents, where agents are added after creation
+	 * @param fileName - the name of the file, which we includes data for creation
+	 * 						environment, agents and objects	 * 					
+	 * @return null if everything was okay, or error message if something went wrong,
+	 * 					e.g. wrong file
 	 */
 	public static String generateEnviroment(ArrayList<Agent> agents, String fileName){
 		int id = 0, x, y, skip = 0;
@@ -29,27 +33,17 @@ public class Main {
 	        try{
 				//Create the environment - Length
 		        x = Integer.parseInt(enviromentSize[0]);
-				System.out.println("Environment size X: "+x);
-		//		Scanner inputX = new Scanner(System.in);
-		//		x = inputX.nextInt();
-				
+				System.out.println("Environment size X: "+x);				
 				
 				//Create the environment - Height
 		        y = Integer.parseInt(enviromentSize[1]);
 				System.out.println("Environment size Y: "+y);
-		//		Scanner inputY = new Scanner(System.in);
-		//		y = inputY.nextInt();		
 				
 				//Create the environment - The creation
 				environment = new Environment(x,y);
 		
 				//Agent creation
 				while(skip == 0){
-		//			System.out.println("Agent input format: Color,Shape,X,Y,Sight");
-		//			Scanner objectinput = new Scanner(System.in);
-		//			input = objectinput.next();
-		//			Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
-		//			try {entity = new RandomAgent(environment, id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.nextInt());
 					String[] agentData = br.readLine().split(",");
 					if(agentData.length > 1){
 						if(Integer.parseInt(agentData[0])==0){
@@ -92,13 +86,9 @@ public class Main {
 					}
 				}//while
 				skip = 0;
+				
 				//Object creation
 				while(skip == 0){
-	//				System.out.println("Object input format: Color,Shape,X,Y,Type");
-	//				Scanner objectinput = new Scanner(System.in);
-	//				input = objectinput.next();
-	//				Scanner objectinput2 = new Scanner(input).useDelimiter("\\s*,\\s*");
-	//				try {entity = new Object(environment, id, objectinput2.next().toLowerCase(), objectinput2.next().toLowerCase(), objectinput2.nextInt(), objectinput2.nextInt(),objectinput2.next().toLowerCase());
 					String[] objectData = br.readLine().split(",");
 					if(objectData.length > 1){
 						try {entity = new Object(environment, id, objectData[0].toLowerCase(), objectData[1].toLowerCase(), Integer.parseInt(objectData[2]), Integer.parseInt(objectData[3]), objectData[4].toLowerCase());	
@@ -124,88 +114,178 @@ public class Main {
 	        	return "You chose wrong file";
 	        }
 		} catch (IOException e ){
-			
+			return "You chose wrong file";
 		}
 		return null;
 	}
 	
 	/**
-	 * it moves the agent, or in case "mem" it prints the memories of agent
-	 * or in case of "exit" the program stops
-	 * @param agents
+	 * Moves the agents in environment and return memory data of agents
+	 * @param agents - list of all agents
+	 * @param moves - number of agents' moves
+	 * @param folderName - the name of the folder where we want to create files with data
+	 * @return memory data of agents
 	 */
-	public static String returnData(ArrayList<Agent> agents, int moves){
+	public static String returnData(ArrayList<Agent> agents, int moves, String folderName){
 		String memoryData = "";
-		int skip = 0;
-		String input;
 		
-		//move agents 10 - times
+		//move agents
 		for (int i = 0; i < moves; i++) {
 			for (int j = 0; j < agents.size(); j++){
 				agents.get(j).choice();	
 				agents.get(j).search();
 			}
 		}
-//		while(skip == 0){
-//			System.out.println("Input exit to terminate, input mem to view memory");
-//			Scanner objectinput = new Scanner(System.in);
-//			input = objectinput.nextLine();
-//			if (input.equals("exit")) { //terminate!!
-//				skip = 1;
-//				}
-//			else if (input.equals("mem")){
-			for (int i = 0; i < agents.size(); i++){
-				//agent details
-				memoryData += "Agent: "+agents.get(i).toString()+"\n";
-				//object
-//				System.out.print("Object memory: ");
-				memoryData += "Object memory: ";
-				for (int j = 0; j < agents.get(i).getObjectMemory().size(); j++){
-//					System.out.print(agents.get(i).getObjectMemory().get(j).getID() + ", ");
-					memoryData += agents.get(i).getObjectMemory().get(j).getID() + ", ";
-				}
-//					System.out.println();
-				memoryData += "\n";
-				//visual
-//					System.out.print("Visual memory: ");
-				memoryData += "Visual memory: ";
-				for (int j = 0; j < agents.get(i).getVisualMemory().size(); j++){
-//					System.out.print(agents.get(i).getVisualMemory().get(j).getID() + ", ");
-					memoryData += agents.get(i).getVisualMemory().get(j).getID() + ", ";
-				}
-//					System.out.println();
-				memoryData += "\n";
-				//path
-//					System.out.print("Path memory: ");
-				memoryData += "Path memory: ";
-				for (int j = 0; j < agents.get(i).getPathMemory().size(); j++){
-//					System.out.print("["+agents.get(i).getPathMemory().get(j)[0] + "," + agents.get(i).getPathMemory().get(j)[1] + "], ");
-					memoryData += "["+agents.get(i).getPathMemory().get(j)[0] + "," + agents.get(i).getPathMemory().get(j)[1] + "], ";
-				}
-//				System.out.println();
-				memoryData += "\n";
-				//visible objects
-				System.out.print("Visible objects: ");
-				for (int j = 0; j < agents.get(i).getVisibleObjects().size(); j++){
-//					System.out.print(agents.get(i).getVisibleObjects().get(j).getID() + ", ");
-					memoryData += agents.get(i).getVisibleObjects().get(j).getID() + ", ";
-				}
-//				System.out.println();
-				memoryData += "\nDistance: "+agents.get(i).getDistance();
-//				System.out.print("Distance: "+agents.get(i).getDistance());
-//				System.out.println("\n");
-				memoryData += "\n\n";
-				
-			}	
-				
-//			} else { //move the objects
-//				for (int i = 0; i < agents.size(); i++){
-//					agents.get(i).choice();	
-//					agents.get(i).search();
-//				}
-//			}
-//		}//while
+		
+		//print memory data
+		for (int i = 0; i < agents.size(); i++){
+			//agent details
+			memoryData += agents.get(i).toString();
+			memoryData += "--------------------------------------------------------------\n";
+			//object			
+			memoryData += "Object memory: ";
+			for (int j = 0; j < agents.get(i).getObjectMemory().size(); j++){
+				memoryData += agents.get(i).getObjectMemory().get(j).getID() + ", ";
+			}
+			memoryData += "\n";
+
+			//visual
+			memoryData += "Visual memory: ";
+			for (int j = 0; j < agents.get(i).getVisualMemory().size(); j++){
+				memoryData += agents.get(i).getVisualMemory().get(j).getID() + ", ";
+			}
+
+			memoryData += "\n";
+			
+			//path
+			memoryData += "Path memory: ";
+			for (int j = 0; j < agents.get(i).getPathMemory().size(); j++){
+				memoryData += "["+agents.get(i).getPathMemory().get(j)[0] + "," + agents.get(i).getPathMemory().get(j)[1] + "], ";
+			}
+			
+			memoryData += "\n";
+			
+			//visible objects
+//			System.out.print("Visible objects: ");
+			memoryData += "Visible objects: ";
+			for (int j = 0; j < agents.get(i).getVisibleObjects().size(); j++){
+				memoryData += agents.get(i).getVisibleObjects().get(j).getID() + ", ";
+			}
+
+			memoryData += "\nDistance: "+agents.get(i).getDistance();
+			memoryData += "\n\n";
+			
+		}	
+
+		try{
+			File newFile = new File(folderName+"\\memoryData.txt");
+			FileWriter fw = new FileWriter(newFile);
+	        PrintWriter ps = new PrintWriter(fw);
+	        ps.write(memoryData);
+	        ps.close();
+		}catch (IOException e){
+			
+		}
+        
+		//print agents' perceptions into file
+		agentsPerceptions(agents, folderName);
+		
+		//print agents' step sequence into file
+		agentsStepSequence(agents, folderName);
+		
+		//print agents' final statistic into file
+		agentsStatistic(agents, folderName);
+		
 		return memoryData;
+	}
+	
+	/**
+	 * Prints agents' statistic into file
+	 * 
+	 * @param agents - list of all agents
+	 * @param folderName - the name of the folder where we want to create file with data
+	 */
+	public static void agentsStatistic(ArrayList<Agent> agents, String folderName){
+		String statistic = "";
+		
+		for (Agent agent : agents) {
+			statistic += agent.toString();
+			statistic += "--------------------------------------------------------------\n";
+			
+			statistic += "Distance: "+agent.getDistance()+"\n";
+			statistic += "Number of objects learned: "+agent.getNumOfObjects()+"\n";
+			statistic += "Number of different objects learned: "+agent.getNumOfDiffObjects()+"\n";
+			statistic += "\n";
+		}
+		
+		try{
+			File newFile = new File(folderName+ File.separator+ "finalStatistics.txt");
+			FileWriter fw = new FileWriter(newFile);
+	        PrintWriter ps = new PrintWriter(fw);
+	        ps.write(statistic);
+	        ps.close();
+		}catch (IOException e){
+			
+		}
+			
+	}
+	
+	/**
+	 * Prints agents' perceptions into file
+	 * 
+	 * @param agents - list of all agents
+	 * @param folderName - the name of the folder where we want to create file with data
+	 */
+	public static void agentsPerceptions(ArrayList<Agent> agents, String folderName){
+		String perceptions = "";
+		
+		for (Agent agent : agents) {
+			perceptions += agent.toString();
+			perceptions += "--------------------------------------------------------------\n";
+			for (Object object : agent.getVisualMemory()) {
+				perceptions += object.toString();
+			}
+			perceptions += "\n";
+		}
+		
+		try{
+			File newFile = new File(folderName+ File.separator+ "perceptions.txt");
+			FileWriter fw = new FileWriter(newFile);
+	        PrintWriter ps = new PrintWriter(fw);
+	        ps.write(perceptions);
+	        ps.close();
+		}catch (IOException e){
+			
+		}
+	}
+	
+	/**
+	 * Prints agents' step sequence into file
+	 * 
+	 * @param agents - list of all agents
+	 * @param folderName - the name of the folder where we want to create file with data
+	 */
+	public static void agentsStepSequence(ArrayList<Agent> agents, String folderName){
+		String stepSequence = "";
+		
+		for (Agent agent : agents) {
+			stepSequence += agent.toString();
+			stepSequence += "--------------------------------------------------------------\n";
+			for (int[] path : agent.getPathMemory()) {
+				stepSequence += "["+path[0] + "," + path[1]+"]\n";
+			}
+			stepSequence += "\n";
+		}
+		
+		try{
+			File newFile = new File(folderName + File.separator+ "stepSequence.txt");
+			FileWriter fw = new FileWriter(newFile);
+	        PrintWriter ps = new PrintWriter(fw);
+	        ps.write(stepSequence);
+	        ps.close();
+		}catch (IOException e){
+			
+		}
 	}
 	
 	public static void main(String[] args){
@@ -213,7 +293,7 @@ public class Main {
 		
 		generateEnviroment(agents, "objects.txt");
 		
-		System.out.print(returnData(agents, 10));
+		System.out.print(returnData(agents, 10, "D:\\"));
 		
 		
 	}//main
