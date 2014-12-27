@@ -358,7 +358,7 @@ public class ApplicationGUI extends javax.swing.JFrame {
 					}
 				}
             //System.out.print(showDetails);
-            JOptionPane.showMessageDialog(jFrameMap, showDetails);
+            JOptionPane.showMessageDialog(jFrameMap, showDetails, "Entities details", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     
