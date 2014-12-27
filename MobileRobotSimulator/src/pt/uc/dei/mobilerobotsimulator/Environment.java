@@ -23,6 +23,15 @@ public class Environment {
 	}
 	
 	/**
+	 * 
+	 * @return all entities in environment
+	 */
+	public static ArrayList<Entity> getEntitiesLocation() {
+		return entitiesLocation;
+	}
+
+	
+	/**
 	 * Add entity in the environment
 	 * @param entity - entity which is added to environment
 	 */

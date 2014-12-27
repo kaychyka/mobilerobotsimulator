@@ -19,10 +19,11 @@ public class Main {
 	 * @return null if everything was okay, or error message if something went wrong,
 	 * 					e.g. wrong file
 	 */
-	public static String generateEnviroment(ArrayList<Agent> agents, String fileName){
+	public static int[] generateEnviroment(ArrayList<Agent> agents, String fileName){
 		int id = 0, x, y, skip = 0;
 		Entity entity;
 		Environment environment;
+		int[] dimen = null;
 		
 		try{
 			File f = new File(fileName);
@@ -31,12 +32,15 @@ public class Main {
 	        String[] enviromentSize = br.readLine().split(",");
 	        
 	        try{
+	        	dimen = new int[2];
 				//Create the environment - Length
 		        x = Integer.parseInt(enviromentSize[0]);
-				System.out.println("Environment size X: "+x);				
+				dimen[0] = x;
+		        System.out.println("Environment size X: "+x);				
 				
 				//Create the environment - Height
 		        y = Integer.parseInt(enviromentSize[1]);
+		        dimen[1]=y;
 				System.out.println("Environment size Y: "+y);
 				
 				//Create the environment - The creation
@@ -111,12 +115,12 @@ public class Main {
 					agents.get(i).search();
 				}
 	        }catch (Exception e){
-	        	return "You chose wrong file";
+	        	return null;
 	        }
 		} catch (IOException e ){
-			return "You chose wrong file";
+			return null;
 		}
-		return null;
+		return dimen;
 	}
 	
 	/**
