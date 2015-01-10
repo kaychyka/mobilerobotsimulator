@@ -16,7 +16,7 @@ public class Environment {
 	/**
 	 * List of all entities in environment
 	 */
-	protected static ArrayList<Entity> entitiesLocation = new ArrayList<Entity>();
+	protected static ArrayList<Entity> entities = new ArrayList<Entity>();
 	private int sizeX;
 	private int sizeY;
 	
@@ -35,8 +35,8 @@ public class Environment {
 	 * 
 	 * @return all entities in environment
 	 */
-	public static ArrayList<Entity> getEntitiesLocation() {
-		return entitiesLocation;
+	public static ArrayList<Entity> getEntities() {
+		return entities;
 	}
 
 	
@@ -46,7 +46,7 @@ public class Environment {
 	 * @param entity - entity which is added to environment
 	 */
 	public void addEntity(Entity entity){
-		entitiesLocation.add(entity);
+		entities.add(entity);
 	}
 	
 	/**

@@ -74,11 +74,11 @@ public abstract class Entity {
 		return coordY;
 	}
 
-	/**
-	 * method used for easier debugging
-	 */
-	public abstract void debug();
-	
+//	/**
+//	 * method used for easier debugging
+//	 */
+//	public abstract void debug();
+//	
 	/**
 	 * Prevents the entity from being placed outside environment
 	 */

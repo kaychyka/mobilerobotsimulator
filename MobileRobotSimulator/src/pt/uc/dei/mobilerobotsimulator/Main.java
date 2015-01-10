@@ -55,7 +55,7 @@ public class Main {
 								environment.addEntity(entity);
 								agents.add((Agent) entity);
 								entity.limit();
-								entity.debug();
+//								entity.debug();
 								id++;
 							} catch (NoSuchElementException e) {
 								skip = 1;
@@ -66,7 +66,7 @@ public class Main {
 								environment.addEntity(entity);
 								agents.add((Agent) entity);
 								entity.limit();
-								entity.debug();
+//								entity.debug();
 								id++;
 							} catch (NoSuchElementException e) {
 								skip = 1;
@@ -77,7 +77,7 @@ public class Main {
 								environment.addEntity(entity);
 								agents.add((Agent) entity);
 								entity.limit();
-								entity.debug();
+//								entity.debug();
 								id++;
 							} catch (NoSuchElementException e) {
 								skip = 1;
@@ -98,7 +98,7 @@ public class Main {
 						try {entity = new Object(environment, id, objectData[0].toLowerCase(), objectData[1].toLowerCase(), Integer.parseInt(objectData[2]), Integer.parseInt(objectData[3]), objectData[4].toLowerCase());	
 							environment.addEntity(entity);
 							entity.limit();
-							entity.debug();
+//							entity.debug();
 							id++;
 						} catch (NoSuchElementException e) {
 							skip = 1;

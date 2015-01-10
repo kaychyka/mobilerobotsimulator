@@ -70,7 +70,7 @@ public abstract class Agent extends Entity{
      */
 	protected void search(){
 		visibleObjects = new ArrayList<Object>();
-		for (Entity object : Environment.entitiesLocation) {
+		for (Entity object : Environment.entities) {
 			//in case we have non-object entities
 			if (object instanceof Object) {
 				//the equation for looking for the points inside the radius
@@ -240,8 +240,11 @@ public abstract class Agent extends Entity{
 		return "Agent: ID: "+ ID + ", color: " + color + ", shape: " + shape + ", X: " + coordX + ", Y: " + coordY + ", sight: " + sight+"\n";
 	}
 	
-	public void debug(){
-		System.out.println(ID + " " + color + " " + shape + " " + coordX + " " + coordY + " " + sight);
-	}
+//	/**
+//	 * Method used for easier debugging
+//	 */
+//	public void debug(){
+//		System.out.println(ID + " " + color + " " + shape + " " + coordX + " " + coordY + " " + sight);
+//	}
 	
 }

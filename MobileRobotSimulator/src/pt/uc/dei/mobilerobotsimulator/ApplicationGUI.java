@@ -294,7 +294,7 @@ public class ApplicationGUI extends javax.swing.JFrame {
      * @param row - number of rows (size Y)
      */
     public void createEnvironmentMap(int col, int row) {
-    	ArrayList<Entity> entities = Environment.getEntitiesLocation();
+    	ArrayList<Entity> entities = Environment.getEntities();
     	jFrameMap.setTitle("Environment Map");
         jFrameMap.setLayout(new GridLayout(row, col));
 
@@ -345,7 +345,7 @@ public class ApplicationGUI extends javax.swing.JFrame {
     private class BoxListener extends MouseAdapter {
     	public void mouseClicked(MouseEvent me) {
             //show entities details
-    		ArrayList<Entity> entities = Environment.getEntitiesLocation();
+    		ArrayList<Entity> entities = Environment.getEntities();
             JPanel clickedBox =(JPanel) me.getSource(); // get the reference to the box that was clicked 
             String[] ids = clickedBox.getName().split("-"); 
             String showDetails = "";
