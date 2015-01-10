@@ -13,10 +13,19 @@ import java.util.ArrayList;
  */
 public class Environment {
 
+	/**
+	 * List of all entities in environment
+	 */
 	protected static ArrayList<Entity> entitiesLocation = new ArrayList<Entity>();
 	private int sizeX;
 	private int sizeY;
 	
+	/**
+	 * Environment creator
+	 * 
+	 * @param sizeX - length of environment
+	 * @param sizeY - width of environment
+	 */
 	public Environment(int sizeX, int sizeY){
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
@@ -33,6 +42,7 @@ public class Environment {
 	
 	/**
 	 * Add entity in the environment
+	 * 
 	 * @param entity - entity which is added to environment
 	 */
 	public void addEntity(Entity entity){
@@ -40,14 +50,14 @@ public class Environment {
 	}
 	
 	/**
-	 * @return size X of the environment
+	 * @return size X (length) of the environment
 	 */
 	public int getSizeX(){
 		return this.sizeX;
 	}
 	
 	/** 
-	 * @return size Y of the environment
+	 * @return size Y (width) of the environment
 	 */
 	public int getSizeY(){
 		return this.sizeY;

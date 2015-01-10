@@ -20,29 +20,57 @@ public class DifferenceAgent extends Agent {
 	@Override
 	public void choice() {
 		if (visibleObjects.size() > 0) {
-			Object differentObject = null;
-			for (Object object : objectMemory) {
-				
+			Object mostDifferent = visibleObjects.get(0);
+			int diffs = -1;
+			for (Object visualObject : visibleObjects) {
+				for (Object object : objectMemory) {
+					int currentDiffs = compareObjects(visualObject, object);
+					if(currentDiffs > diffs){
+						mostDifferent = visualObject;
+						diffs = currentDiffs;
+					}
+				}
 			}
-			
+						
 			//add object to memory
-			objectMemory.add(differentObject);
+			objectMemory.add(mostDifferent);
 			
 			//increase the number of all visited objects
 	        numOfObjects++;
 	        
 	        //check if agent already visited this object
 	        //and in case it didn't increase the numOfDiffObjects
-	        if(differentObject(differentObject))
+	        if(differentObject(mostDifferent))
 	        	numOfDiffObjects++;        
 	        
-			moveToCoordinates(differentObject.getCoordX(), differentObject.getCoordY());
+			moveToCoordinates(mostDifferent.getCoordX(), mostDifferent.getCoordY());
 		} else {
 			moveToRandomCoordinates();
 		}
 	}
-
-	private void compareObjects(Object oldObject, Object newObject){
+	
+	/**
+	 * Compares numbers of differences between two objects
+	 * 
+	 * @param firstObject - first object we want to compare with second one
+	 * @param newObject - second object we want to compare with first one
+	 * @return number of differences between two objects
+	 */
+	private int compareObjects(Object firstObject, Object secondObject){
+		int differences = 0;
 		
+		if(!firstObject.getColor().equals(secondObject.getColor())){
+			differences++;
+		}
+		
+		if(!firstObject.getShape().equals(secondObject.getShape())){
+			differences++;
+		}
+		
+		if(!firstObject.getType().equals(secondObject.getType())){
+			differences++;
+		}
+		
+		return differences;
 	}
 }

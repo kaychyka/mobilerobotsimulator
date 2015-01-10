@@ -12,6 +12,17 @@ package pt.uc.dei.mobilerobotsimulator;
 public class Object extends Entity{
 	private String type;
 	
+	/**
+	 * Object creator
+	 * 
+	 * @param environment
+	 * @param ID - ID number of the object
+	 * @param color - color of the object
+	 * @param shape - shape of the object
+	 * @param coordX - coordinate X of object's location
+	 * @param coordY - coordinate Y of object's location
+	 * @param type - type of the object
+	 */
 	public Object(Environment environment, int ID, String color, String shape, int coordX, int coordY, String type) {
 		super(environment, ID, color, shape, coordX, coordY);
 		this.type = type;
@@ -24,10 +35,14 @@ public class Object extends Entity{
 		return type;
 	}
 	
+	/**
+	 * @return string with all object's data
+	 */
 	@Override
 	public String toString() {
 		return "Object: ID: "+ID + ", color: " + color + ", shape: " + shape + ", X: " + coordX + ", Y: " + coordY + ", type: " + type+"\n";
 	}
+	
 	/**
 	 * method used for easier debugging
 	 */

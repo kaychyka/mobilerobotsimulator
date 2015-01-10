@@ -25,19 +25,39 @@ import java.util.Random;
  */
 public abstract class Agent extends Entity{
 
-	//all objects visited  
+	/**
+	 * All visited objects  
+	 */
 	protected ArrayList<Object> objectMemory = new ArrayList<Object>(); 
-	//all objects in visual field in agent's life 
+	/**
+	 * All objects in visual field in agent's life 
+	 */
 	protected ArrayList<Object> visualMemory = new ArrayList<Object>();
-	//all objects in current visible field
+	/**
+	 * All objects in current visible field
+	 */
 	protected ArrayList<Object> visibleObjects; // = new ArrayList<Object>();
-	//the path that agent made in its life
+	/**
+	 * The path that agent made in its life
+	 */
 	protected ArrayList<int[]> pathMemory = new ArrayList<int[]>();
+	
 	protected int sight;
 	protected int numOfObjects;
 	protected int numOfDiffObjects;
 	protected double distance;
 	
+	/**
+	 * Agent's creator
+	 * 
+	 * @param environment - environment where all entities are placed
+	 * @param ID - ID number of the agent
+	 * @param color - color of the agent
+	 * @param shape - shape of the agent
+	 * @param coordX - coordinate X of first agent's location
+	 * @param coordY - coordinate Y of first agent's location
+	 * @param sight - radius sight of the agent
+	 */
 	public Agent(Environment environment, int ID, String color, String shape, int coordX, int coordY, int sight) {
 		super(environment, ID, color, shape, coordX, coordY);
 		this.sight = sight;
@@ -70,13 +90,6 @@ public abstract class Agent extends Entity{
 		int[] coor = {this.coordX,this.coordY};
 		pathMemory.add(coor);
 		
-		//in case there is no Objects in visible field of the agent (FAQ Q.2)
-		//choose random position inside visual field
-		/*if(visualMemory.size()<1){
-			Random rnd = new Random();
-			int index = rnd.nextInt(this.sight);
-			moveToCoordinates(this.coordX+index, this.coordY+index);
-		}*/
 	}
 	
 	/**
@@ -101,7 +114,6 @@ public abstract class Agent extends Entity{
 	public abstract void choice();
 	
 	/**
-	 * 
 	 * Move agent to coordinates 
 	 * (e.g. where is new selected object,
 	 * which we picked in choice method or just to new location)
@@ -117,12 +129,7 @@ public abstract class Agent extends Entity{
 		this.coordX = x;
 		this.coordY = y;
 		
-		
 		System.out.println(" to " + this.coordX + "," + this.coordY);
-		
-		//At each stop in an object, the agent should
-		//obtain the list of objects present in its visual field.
-		//search();
 		
 		increaseDistance(oldX, oldY, this.coordX, this.coordY);
 	}
@@ -141,10 +148,6 @@ public abstract class Agent extends Entity{
 		limit();
 		
 		System.out.println(" to " + this.coordX + "," + this.coordY);
-		
-		//At each stop in an object, the agent should
-		//obtain the list of objects present in its visual field.
-		//search();
 		
 		increaseDistance(oldX, oldY, this.coordX, this.coordY);
 	}
@@ -220,6 +223,9 @@ public abstract class Agent extends Entity{
 		return distance;
 	}
 	
+	/**
+	 * @return string with all agent's data
+	 */
 	@Override
 	public String toString() {
 		return "Agent: ID: "+ ID + ", color: " + color + ", shape: " + shape + ", X: " + coordX + ", Y: " + coordY + ", sight: " + sight+"\n";

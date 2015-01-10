@@ -73,7 +73,7 @@ public class Main {
 								System.out.println("Moving to object creation...");
 							}
 						}else if(Integer.parseInt(agentData[0])==2){
-							try {entity = new RandomAgent(environment, id, agentData[1].toLowerCase(), agentData[2].toLowerCase(), Integer.parseInt(agentData[3]), Integer.parseInt(agentData[4]), Integer.parseInt(agentData[5]));	
+							try {entity = new DifferenceAgent(environment, id, agentData[1].toLowerCase(), agentData[2].toLowerCase(), Integer.parseInt(agentData[3]), Integer.parseInt(agentData[4]), Integer.parseInt(agentData[5]));	
 								environment.addEntity(entity);
 								agents.add((Agent) entity);
 								entity.limit();
@@ -114,12 +114,16 @@ public class Main {
 				for (int i = 0; i < agents.size(); i++){ //add initial positions to memory
 					agents.get(i).search();
 				}
+
+		        br.close();
 	        }catch (Exception e){
+	        	br.close();
 	        	return null;
 	        }
 		} catch (IOException e ){
 			return null;
 		}
+		
 		return dimen;
 	}
 	

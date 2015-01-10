@@ -20,6 +20,16 @@ public abstract class Entity {
 	protected int coordY;
 	protected Environment environment;
 
+	/**
+	 * Entity creator
+	 * 
+	 * @param environment
+	 * @param ID - ID number of the entity
+	 * @param color - color of the entity
+	 * @param shape - shape of the entity
+	 * @param coordX - coordinate X of entity's location
+	 * @param coordY - coordinate Y of entity's location
+	 */
 	public Entity(Environment environment, int ID, String color, String shape, int coordX, int coordY){
 		this.ID = ID;
 		this.color = color;

@@ -12,8 +12,7 @@ package pt.uc.dei.mobilerobotsimulator;
 public class ClosestAgent extends Agent{
 
 	public ClosestAgent(Environment environment, int ID, String color, String shape, int coordX, int coordY, int sight) {
-		super(environment, ID, color, shape, coordX, coordY, sight);
-		
+		super(environment, ID, color, shape, coordX, coordY, sight);	
 	}
 
 	/**
@@ -22,9 +21,6 @@ public class ClosestAgent extends Agent{
 	 */
 	@Override
 	public void choice() {
-		//search for all Objects in visual field
-		//search();
-		
 		//current the smallest distance between agent 
 		//and object inside of its visible field
 		double smallestDist = -1;
