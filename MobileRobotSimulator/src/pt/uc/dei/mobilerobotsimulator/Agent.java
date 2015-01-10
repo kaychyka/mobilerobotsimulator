@@ -28,15 +28,15 @@ public abstract class Agent extends Entity{
 	/**
 	 * All visited objects  
 	 */
-	protected ArrayList<Object> objectMemory = new ArrayList<Object>(); 
+	protected ArrayList<Object> visitedObjectsMemory = new ArrayList<Object>(); 
 	/**
 	 * All objects in visual field in agent's life 
 	 */
-	protected ArrayList<Object> visualMemory = new ArrayList<Object>();
+	protected ArrayList<Object> learnedObjectsMemory = new ArrayList<Object>();
 	/**
 	 * All objects in current visible field
 	 */
-	protected ArrayList<Object> visibleObjects; // = new ArrayList<Object>();
+	protected ArrayList<Object> visibleObjects;
 	/**
 	 * The path that agent made in its life
 	 */
@@ -76,15 +76,23 @@ public abstract class Agent extends Entity{
 				//the equation for looking for the points inside the radius
 				//(in our case inside the agents sight)
 				if(Math.abs(object.getCoordX() - this.coordX) <= (this.sight) && Math.abs(object.getCoordY() - this.coordY) <= (this.sight)
-						&& ((object.getCoordX() != this.coordX) || (object.getCoordY() != this.coordY)))
+						&& ((object.getCoordX() != this.coordX) || (object.getCoordY() != this.coordY))){
 					visibleObjects.add((Object)object);
+					
+					//increase the number of all objects in visual field
+			        numOfObjects++;
+			        
+			        //check if the object has been seen before
+			        if(differentObject((Object)object))
+			        	numOfDiffObjects++; 
+				}
 			}	
-		}
-		
+		}  
+        
 		//add all visible objects to visible memory,
 		//so we have saved all objects in visible field 
 		//of the agent in its life
-		visualMemory.addAll(visibleObjects);
+		learnedObjectsMemory.addAll(visibleObjects);
 		
 		//add the position to path memory
 		int[] coor = {this.coordX,this.coordY};
@@ -160,9 +168,10 @@ public abstract class Agent extends Entity{
 	 * @return false - if the object was already visited
 	 */
 	public boolean differentObject(Object obj){
-		for (Object object : objectMemory) {
-			if(object.getID() == obj.getID())
+		for (Object object : learnedObjectsMemory) {
+			if(object.getID() == obj.getID()){
 				return false;
+			}
 		}
 		return true;
 	}
@@ -170,15 +179,15 @@ public abstract class Agent extends Entity{
 	/**
      * @return objects that agent visited
      */
-	public ArrayList<Object> getObjectMemory() {
-		return objectMemory;
+	public ArrayList<Object> getVisitedObjectMemory() {
+		return visitedObjectsMemory;
 	}
 	
     /**
      * @return all objects in visual field in agent's life
      */
-	public ArrayList<Object> getVisualMemory() {
-		return visualMemory;
+	public ArrayList<Object> getLearnedObjectsMemory() {
+		return learnedObjectsMemory;
 	}
 
     /**

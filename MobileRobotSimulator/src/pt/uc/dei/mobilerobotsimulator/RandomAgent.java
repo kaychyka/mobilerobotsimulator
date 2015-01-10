@@ -13,6 +13,17 @@ import java.util.Random;
  */
 public class RandomAgent extends Agent {
 
+	/**
+	 * Random agent's creator
+	 * 
+	 * @param environment - environment where all entities are placed
+	 * @param ID - ID number of the agent
+	 * @param color - color of the agent
+	 * @param shape - shape of the agent
+	 * @param coordX - coordinate X of first agent's location
+	 * @param coordY - coordinate Y of first agent's location
+	 * @param sight - radius sight of the agent
+	 */
 	public RandomAgent(Environment environment, int ID, String color, String shape, int coordX,
 			int coordY, int sight) {
 		super(environment, ID, color, shape, coordX, coordY, sight);
@@ -27,10 +38,7 @@ public class RandomAgent extends Agent {
 		if (visibleObjects.size() > 0) {
 			int index = rnd.nextInt(visibleObjects.size());
 			Object selectedObject = visibleObjects.get(index);
-        
-			//add object to memory
-			objectMemory.add(selectedObject);
-        
+
 			//increase the number of all visited objects
 			numOfObjects++;
         
@@ -38,6 +46,9 @@ public class RandomAgent extends Agent {
 			//and in case it didn't increase the numOfDiffObjects
 			if(differentObject(selectedObject))
 				numOfDiffObjects++;
+        
+			//add object to memory
+			visitedObjectsMemory.add(selectedObject);
         
 			moveToCoordinates(selectedObject.getCoordX(), selectedObject.getCoordY());
 		}

@@ -151,16 +151,16 @@ public class Main {
 			memoryData += agents.get(i).toString();
 			memoryData += "--------------------------------------------------------------\n";
 			//object			
-			memoryData += "Object memory: ";
-			for (int j = 0; j < agents.get(i).getObjectMemory().size(); j++){
-				memoryData += agents.get(i).getObjectMemory().get(j).getID() + ", ";
+			memoryData += "Visited objects memory: ";
+			for (int j = 0; j < agents.get(i).getVisitedObjectMemory().size(); j++){
+				memoryData += agents.get(i).getVisitedObjectMemory().get(j).getID() + ", ";
 			}
 			memoryData += "\n";
 
 			//visual
-			memoryData += "Visual memory: ";
-			for (int j = 0; j < agents.get(i).getVisualMemory().size(); j++){
-				memoryData += agents.get(i).getVisualMemory().get(j).getID() + ", ";
+			memoryData += "Learned objects memory: ";
+			for (int j = 0; j < agents.get(i).getLearnedObjectsMemory().size(); j++){
+				memoryData += agents.get(i).getLearnedObjectsMemory().get(j).getID() + ", ";
 			}
 
 			memoryData += "\n";
@@ -250,7 +250,7 @@ public class Main {
 		for (Agent agent : agents) {
 			perceptions += agent.toString();
 			perceptions += "--------------------------------------------------------------\n";
-			for (Object object : agent.getVisualMemory()) {
+			for (Object object : agent.getLearnedObjectsMemory()) {
 				perceptions += object.toString();
 			}
 			perceptions += "\n";

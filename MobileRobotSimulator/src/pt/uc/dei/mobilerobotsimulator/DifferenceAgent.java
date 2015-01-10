@@ -12,6 +12,17 @@ package pt.uc.dei.mobilerobotsimulator;
  */
 public class DifferenceAgent extends Agent {
 
+	/**
+	 * Difference agent's creator
+	 * 
+	 * @param environment - environment where all entities are placed
+	 * @param ID - ID number of the agent
+	 * @param color - color of the agent
+	 * @param shape - shape of the agent
+	 * @param coordX - coordinate X of first agent's location
+	 * @param coordY - coordinate Y of first agent's location
+	 * @param sight - radius sight of the agent
+	 */
 	public DifferenceAgent(Environment environment, int ID, String color, String shape, int coordX,
 			int coordY, int sight) {
 		super(environment, ID, color, shape, coordX, coordY, sight);
@@ -22,19 +33,16 @@ public class DifferenceAgent extends Agent {
 		if (visibleObjects.size() > 0) {
 			Object mostDifferent = visibleObjects.get(0);
 			int diffs = -1;
-			for (Object visualObject : visibleObjects) {
-				for (Object object : objectMemory) {
-					int currentDiffs = compareObjects(visualObject, object);
+			for (Object visibleObject : visibleObjects) {
+				for (Object object : visitedObjectsMemory) {
+					int currentDiffs = compareObjects(visibleObject, object);
 					if(currentDiffs > diffs){
-						mostDifferent = visualObject;
+						mostDifferent = visibleObject;
 						diffs = currentDiffs;
 					}
 				}
 			}
-						
-			//add object to memory
-			objectMemory.add(mostDifferent);
-			
+
 			//increase the number of all visited objects
 	        numOfObjects++;
 	        
@@ -42,7 +50,10 @@ public class DifferenceAgent extends Agent {
 	        //and in case it didn't increase the numOfDiffObjects
 	        if(differentObject(mostDifferent))
 	        	numOfDiffObjects++;        
-	        
+	        		
+			//add object to memory
+			visitedObjectsMemory.add(mostDifferent);
+			
 			moveToCoordinates(mostDifferent.getCoordX(), mostDifferent.getCoordY());
 		} else {
 			moveToRandomCoordinates();
