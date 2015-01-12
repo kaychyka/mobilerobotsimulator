@@ -5,7 +5,6 @@ import java.util.Random;
 
 /**
  * 
- * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  * 
  * Agent represents the robot. 
  * The agents move throughout the environment exploring it in order to acquire 
@@ -22,6 +21,8 @@ import java.util.Random;
  * one of the three strategies. That's why we have three different agents:
  * Closest Agent, Difference Agent and Random Agent.
  *
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
+ * 
  */
 public abstract class Agent extends Entity{
 
@@ -50,13 +51,13 @@ public abstract class Agent extends Entity{
 	/**
 	 * Agent's creator
 	 * 
-	 * @param environment - environment where all entities are placed
-	 * @param ID - ID number of the agent
-	 * @param color - color of the agent
-	 * @param shape - shape of the agent
-	 * @param coordX - coordinate X of first agent's location
-	 * @param coordY - coordinate Y of first agent's location
-	 * @param sight - radius sight of the agent
+	 * @param environment the environment where all entities are placed
+	 * @param ID ID number of the agent
+	 * @param color color of the agent
+	 * @param shape shape of the agent
+	 * @param coordX coordinate X of first agent's location
+	 * @param coordY coordinate Y of first agent's location
+	 * @param sight radius sight of the agent
 	 */
 	public Agent(Environment environment, int ID, String color, String shape, int coordX, int coordY, int sight) {
 		super(environment, ID, color, shape, coordX, coordY);
@@ -103,10 +104,10 @@ public abstract class Agent extends Entity{
 	/**
 	 * Increase the distance with a distance from old to new location
 	 * 
-	 * @param oldX - old coordinate X of the agent
-	 * @param oldY - old coordinate Y of the agent
-	 * @param newX - new coordinate X of the agent
-	 * @param newY - new coordinate X of the agent
+	 * @param oldX old coordinate X of the agent
+	 * @param oldY old coordinate Y of the agent
+	 * @param newX new coordinate X of the agent
+	 * @param newY new coordinate X of the agent
 	 */
 	private void increaseDistance(int oldX, int oldY, int newX, int newY){
 		double dist = Math.sqrt(Math.pow((oldX - newX), 2) + Math.pow((oldY - newY),2));
@@ -126,8 +127,8 @@ public abstract class Agent extends Entity{
 	 * (e.g. where is new selected object,
 	 * which we picked in choice method or just to new location)
 	 * 	 
-	 * @param x - coordinate x of next agent's position 
-	 * @param y - coordinate y of next agent's position
+	 * @param x coordinate x of next agent's position 
+	 * @param y coordinate y of next agent's position
 	 */
 	public void moveToCoordinates(int x, int y){
 		int oldX = this.coordX;
@@ -163,9 +164,9 @@ public abstract class Agent extends Entity{
 	/**
 	 * Check if current visited object was already visited or not.
 	 * 
-	 * @param obj - object we want to check
-	 * @return true - if the object is different, wasn't visited yet
-	 * @return false - if the object was already visited
+	 * @param obj object we want to check
+	 * @return true if the object is different, wasn't visited yet
+	 * @return false if the object was already visited
 	 */
 	public boolean differentObject(Object obj){
 		for (Object object : learnedObjectsMemory) {

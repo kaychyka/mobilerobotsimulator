@@ -5,6 +5,9 @@ import java.io.*;
 
 /**
  * 
+ * Main class includes methods for generating environment and for saving data
+ * into files.
+ * 
  * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  *
  */
@@ -13,8 +16,8 @@ public class Main {
 	
 	/**
 	 * It generates all Environment, Agents and Objects, based on data in file
-	 * @param agents - empty list of agents, where agents are added after creation
-	 * @param fileName - the name of the file, which we includes data for creation
+	 * @param agents empty list of agents, where agents are added after creation
+	 * @param fileName the name of the file, which we includes data for creation
 	 * 						environment, agents and objects	 * 					
 	 * @return null if everything was okay, or error message if something went wrong,
 	 * 					e.g. wrong file
@@ -129,9 +132,9 @@ public class Main {
 	
 	/**
 	 * Moves the agents in environment and return memory data of agents
-	 * @param agents - list of all agents
-	 * @param moves - number of agents' moves
-	 * @param folderName - the name of the folder where we want to create files with data
+	 * @param agents list of all agents
+	 * @param moves number of agents' moves
+	 * @param folderName the name of the folder where we want to create files with data
 	 * @return memory data of agents
 	 */
 	public static String returnData(ArrayList<Agent> agents, int moves, String folderName){
@@ -210,8 +213,8 @@ public class Main {
 	/**
 	 * Prints agents' statistic into file
 	 * 
-	 * @param agents - list of all agents
-	 * @param folderName - the name of the folder where we want to create file with data
+	 * @param agents list of all agents
+	 * @param folderName the name of the folder where we want to create file with data
 	 */
 	public static void agentsStatistic(ArrayList<Agent> agents, String folderName){
 		String statistic = "";
@@ -241,8 +244,8 @@ public class Main {
 	/**
 	 * Prints agents' perceptions into file
 	 * 
-	 * @param agents - list of all agents
-	 * @param folderName - the name of the folder where we want to create file with data
+	 * @param agents list of all agents
+	 * @param folderName  the name of the folder where we want to create file with data
 	 */
 	public static void agentsPerceptions(ArrayList<Agent> agents, String folderName){
 		String perceptions = "";
@@ -270,8 +273,8 @@ public class Main {
 	/**
 	 * Prints agents' step sequence into file
 	 * 
-	 * @param agents - list of all agents
-	 * @param folderName - the name of the folder where we want to create file with data
+	 * @param agents  list of all agents
+	 * @param folderName  the name of the folder where we want to create file with data
 	 */
 	public static void agentsStepSequence(ArrayList<Agent> agents, String folderName){
 		String stepSequence = "";
@@ -296,13 +299,13 @@ public class Main {
 		}
 	}
 	
-	public static void main(String[] args){
-		ArrayList<Agent> agents = new ArrayList<Agent>();
-		
-		generateEnviroment(agents, "objects.txt");
-		
-		System.out.print(returnData(agents, 10, "D:\\"));
-		
-		
-	}//main
+//	public static void main(String[] args){
+//		ArrayList<Agent> agents = new ArrayList<Agent>();
+//		
+//		generateEnviroment(agents, "objects.txt");
+//		
+//		System.out.print(returnData(agents, 10, "D:\\"));
+//		
+//		
+//	}//main
 }//class

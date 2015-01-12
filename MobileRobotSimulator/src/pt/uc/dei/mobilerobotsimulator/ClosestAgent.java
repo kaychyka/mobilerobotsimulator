@@ -2,25 +2,25 @@ package pt.uc.dei.mobilerobotsimulator;
 
 /**
  * 
- * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  * 
  * ClosestAgent uses strategy of the closest object: 
  * the next object to be visited is the one in the visual field that is 
  * geographically closer to the agent.
  *
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  */
 public class ClosestAgent extends Agent{
 
 	/**
 	 * Closest agent's creator
 	 * 
-	 * @param environment - environment where all entities are placed
-	 * @param ID - ID number of the agent
-	 * @param color - color of the agent
-	 * @param shape - shape of the agent
-	 * @param coordX - coordinate X of first agent's location
-	 * @param coordY - coordinate Y of first agent's location
-	 * @param sight - radius sight of the agent
+	 * @param environment environment where all entities are placed
+	 * @param ID ID number of the agent
+	 * @param color color of the agent
+	 * @param shape shape of the agent
+	 * @param coordX coordinate X of first agent's location
+	 * @param coordY coordinate Y of first agent's location
+	 * @param sight radius sight of the agent
 	 */
 	public ClosestAgent(Environment environment, int ID, String color, String shape, int coordX, int coordY, int sight) {
 		super(environment, ID, color, shape, coordX, coordY, sight);	

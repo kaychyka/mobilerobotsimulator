@@ -2,7 +2,7 @@ package pt.uc.dei.mobilerobotsimulator;
 
 /**
  * 
- * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
+ * 
  * 
  * Entity is abstract class and super class of Agent and Object.
  * This class contains a unique identifier, a color, a geometric shape 
@@ -10,6 +10,8 @@ package pt.uc.dei.mobilerobotsimulator;
  * triangular, pentagonal, etc., are assumed), and a pair (x,y) of coordinates 
  * in the matrix environment.
  *
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
+ * 
  */
 public abstract class Entity {
 
@@ -23,12 +25,12 @@ public abstract class Entity {
 	/**
 	 * Entity creator
 	 * 
-	 * @param environment
-	 * @param ID - ID number of the entity
-	 * @param color - color of the entity
-	 * @param shape - shape of the entity
-	 * @param coordX - coordinate X of entity's location
-	 * @param coordY - coordinate Y of entity's location
+	 * @param environment environment where all entities are placed
+	 * @param ID ID number of the entity
+	 * @param color color of the entity
+	 * @param shape shape of the entity
+	 * @param coordX coordinate X of entity's location
+	 * @param coordY coordinate Y of entity's location
 	 */
 	public Entity(Environment environment, int ID, String color, String shape, int coordX, int coordY){
 		this.ID = ID;

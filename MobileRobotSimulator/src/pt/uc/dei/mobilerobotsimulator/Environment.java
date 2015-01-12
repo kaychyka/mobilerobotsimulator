@@ -5,10 +5,11 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  *
  * This class represents the environment, which is a 2D matrix and
  * contains all of the entities.
+ * 
+ * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  *
  */
 public class Environment {
@@ -23,8 +24,8 @@ public class Environment {
 	/**
 	 * Environment creator
 	 * 
-	 * @param sizeX - length of environment
-	 * @param sizeY - width of environment
+	 * @param sizeX length of environment
+	 * @param sizeY width of environment
 	 */
 	public Environment(int sizeX, int sizeY){
 		this.sizeX = sizeX;
@@ -43,7 +44,7 @@ public class Environment {
 	/**
 	 * Add entity in the environment
 	 * 
-	 * @param entity - entity which is added to environment
+	 * @param entity entity which is added to environment
 	 */
 	public void addEntity(Entity entity){
 		entities.add(entity);

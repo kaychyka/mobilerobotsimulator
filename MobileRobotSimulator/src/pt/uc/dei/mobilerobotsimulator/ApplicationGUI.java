@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /**
  *
+ * GUI of application.
+ * 
  * @author Karin Piškur (2014190802) and Pedro de Oliveira Estêvão (2011157312)
  */
 public class ApplicationGUI extends javax.swing.JFrame {
