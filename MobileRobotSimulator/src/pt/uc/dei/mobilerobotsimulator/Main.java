@@ -58,7 +58,6 @@ public class Main {
 								environment.addEntity(entity);
 								agents.add((Agent) entity);
 								entity.limit();
-//								entity.debug();
 								id++;
 							} catch (NoSuchElementException e) {
 								skip = 1;
@@ -69,7 +68,6 @@ public class Main {
 								environment.addEntity(entity);
 								agents.add((Agent) entity);
 								entity.limit();
-//								entity.debug();
 								id++;
 							} catch (NoSuchElementException e) {
 								skip = 1;
@@ -80,7 +78,6 @@ public class Main {
 								environment.addEntity(entity);
 								agents.add((Agent) entity);
 								entity.limit();
-//								entity.debug();
 								id++;
 							} catch (NoSuchElementException e) {
 								skip = 1;
@@ -177,7 +174,6 @@ public class Main {
 			memoryData += "\n";
 			
 			//visible objects
-//			System.out.print("Visible objects: ");
 			memoryData += "Visible objects: ";
 			for (int j = 0; j < agents.get(i).getVisibleObjects().size(); j++){
 				memoryData += agents.get(i).getVisibleObjects().get(j).getID() + ", ";
@@ -298,14 +294,5 @@ public class Main {
 			
 		}
 	}
-	
-//	public static void main(String[] args){
-//		ArrayList<Agent> agents = new ArrayList<Agent>();
-//		
-//		generateEnviroment(agents, "objects.txt");
-//		
-//		System.out.print(returnData(agents, 10, "D:\\"));
-//		
-//		
-//	}//main
+
 }//class

@@ -241,11 +241,4 @@ public abstract class Agent extends Entity{
 		return "Agent: ID: "+ ID + ", color: " + color + ", shape: " + shape + ", X: " + coordX + ", Y: " + coordY + ", sight: " + sight+"\n";
 	}
 	
-//	/**
-//	 * Method used for easier debugging
-//	 */
-//	public void debug(){
-//		System.out.println(ID + " " + color + " " + shape + " " + coordX + " " + coordY + " " + sight);
-//	}
-	
 }

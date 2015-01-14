@@ -43,12 +43,5 @@ public class Object extends Entity{
 	public String toString() {
 		return "Object: ID: "+ID + ", color: " + color + ", shape: " + shape + ", X: " + coordX + ", Y: " + coordY + ", type: " + type+"\n";
 	}
-//	
-//	/**
-//	 * Method used for easier debugging
-//	 */
-//	public void debug(){
-//		System.out.println(ID + " " + color + " " + shape + " " + coordX + " " + coordY + " " + type);
-//	}
 
 }
